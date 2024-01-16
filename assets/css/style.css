@@ -147,11 +147,11 @@ button {
   background-color: #000;
   color: #fff;
   cursor: pointer;
-  transition: 0.25s ease-out;
+  transition: 0.08s ease-out;
 }
 button:hover {
   background-color: rgb(10, 121, 114);
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
 .svg {
@@ -194,18 +194,18 @@ ul li {
   padding: 8px;
   color: #666;
   text-decoration: none;
-  transition: 0.25s ease-out;
+  transition: 0.15s ease-out;
 }
 
 .menu a:before {
   content: "/";
-  transition: 0.25s ease-out;
+  transition: 0.15s ease-out;
 }
 
 .menu a:hover {
   text-decoration: none;
   transform: scale(1.05);
-  transition: 0.25s ease-out;
+  transition: 0.15s ease-out;
   color: rgb(10, 121, 114);
 }
 .menu a:hover::before {
