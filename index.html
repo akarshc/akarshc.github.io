@@ -47,7 +47,7 @@
     .section-nav-arrow {
       position: absolute;
       font-size: 2rem;
-      color: #a0aec0;
+      color: #b2c6e0b7;
       cursor: pointer;
       transition: color 0.3s ease;
       z-index: 10;
@@ -95,10 +95,6 @@
       justify-content: center; 
       align-items: center; 
       padding: 1.5rem; /* Reduced padding for mobile */
-    }
-    .gradient-card:hover { 
-      transform: translateY(-5px); 
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
     }
     /* Styling Adjustments for Titles and Paragraphs */
     .section-title { font-size: 1.5rem; }
@@ -323,7 +319,7 @@
         <div class="section-nav-arrow down" data-target="10"><i class="fas fa-chevron-down"></i></div>
       </div>
       <div class="card-wrapper" data-index="10">
-        <div class="gradient-card gradient-3">
+        <div class="gradient-card gradient-4">
           <h3 class="section-title mb-4 tracking-tight">Startup Projects</h3>
           <h4 class="main-title mb-3">StickWithSEO.com</h4>
           <p class="text-section card-paragraph">SEO tool (PHP/MySQL)</p>
@@ -332,9 +328,9 @@
         <div class="section-nav-arrow down" data-target="11"><i class="fas fa-chevron-down"></i></div>
       </div>
       <div class="card-wrapper" data-index="11">
-        <div class="gradient-card gradient-4">
+        <div class="gradient-card gradient-3">
           <h3 class="section-title mb-4 tracking-tight">Startup Projects</h3>
-          <h4 class="main-title mb-3">Viewww.me</h4>
+          <h4 class="main-title mb-3">Vieww.me</h4>
           <p class="text-section card-paragraph">Portfolio builder (React.js/Express.js/PostgreSQL)</p>
         </div>
         <div class="section-nav-arrow up" data-target="10"><i class="fas fa-chevron-up"></i></div>
@@ -616,12 +612,13 @@
     // Swipe and Scroll Navigation
     let startY = 0;
     let isNavigating = false;
-    const swipeThreshold = 100; // Increased threshold for swipe detection
+    const swipeThreshold = 500;
+    const swipeDelay = 1200;
 
     window.addEventListener('wheel', (e) => {
       if (isNavigating) return;
       isNavigating = true;
-      setTimeout(() => { isNavigating = false; }, 1000);
+      setTimeout(() => { isNavigating = false; }, swipeDelay);
 
       const deltaY = e.deltaY;
       if (deltaY > 0 && currentSectionIndex < totalSections - 1) {
@@ -643,7 +640,7 @@
 
       if (Math.abs(deltaY) > swipeThreshold) { // Ensure swipe is intentional
         isNavigating = true;
-        setTimeout(() => { isNavigating = false; }, 1000);
+        setTimeout(() => { isNavigating = false; }, swipeDelay);
 
         if (deltaY > 0 && currentSectionIndex < totalSections - 1) {
           currentSectionIndex++;
