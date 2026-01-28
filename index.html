@@ -731,6 +731,21 @@
     }
   }
 
+  function getUrlForItem(item) {
+    const type = item.dataset.type;
+    if (type === 'file') {
+      const file = item.dataset.file;
+      const urlMap = { 'about': './about', 'contact': './contact' };
+      return urlMap[file] || null;
+    }
+    if (type === 'folder') {
+      const folder = item.dataset.folder;
+      const urlMap = { 'blog': './blog.html', 'projects': './projects', 'work': './work' };
+      return urlMap[folder] || null;
+    }
+    return null;
+  }
+
   function openFileOrFolder(item) {
     const type = item.dataset.type;
     if (type === 'file') {
@@ -756,42 +771,40 @@
   }
 
   document.querySelectorAll('.file-item').forEach(item => {
-    // Desktop: double-click to open
-    item.addEventListener('dblclick', () => {
-      openFileOrFolder(item);
+    function isMobileOrTablet() {
+      return window.innerWidth <= 768;
+    }
+
+    // Desktop: double-click to open window
+    item.addEventListener('dblclick', (e) => {
+      if (!isMobileOrTablet()) {
+        openFileOrFolder(item);
+      }
     });
 
-    // Desktop: single-click to select
+    // Click: on mobile/tablet navigate; on desktop select only
     item.addEventListener('click', (e) => {
+      if (isMobileOrTablet()) {
+        const url = getUrlForItem(item);
+        if (url) {
+          e.preventDefault();
+          window.location.href = url;
+        }
+        return;
+      }
       if (e.detail === 1) {
         document.querySelectorAll('.file-item').forEach(i => i.classList.remove('selected'));
         item.classList.add('selected');
       }
     });
-    
-    // Mobile: double-tap to open
-    let lastTap = 0;
-    let tapTimer = null;
+
+    // Mobile/tablet: single touch → navigate (no window)
     item.addEventListener('touchend', (e) => {
-      const currentTime = new Date().getTime();
-      const tapLength = currentTime - lastTap;
-      
-      if (tapLength < 300 && tapLength > 0) {
-        // Double tap detected
+      if (!isMobileOrTablet()) return;
+      const url = getUrlForItem(item);
+      if (url) {
         e.preventDefault();
-        if (tapTimer) {
-          clearTimeout(tapTimer);
-          tapTimer = null;
-        }
-        openFileOrFolder(item);
-        lastTap = 0;
-      } else {
-        // Single tap - select item
-        tapTimer = setTimeout(() => {
-          document.querySelectorAll('.file-item').forEach(i => i.classList.remove('selected'));
-          item.classList.add('selected');
-        }, 200);
-        lastTap = currentTime;
+        window.location.href = url;
       }
     });
   });
