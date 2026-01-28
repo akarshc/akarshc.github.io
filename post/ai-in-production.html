@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="What breaks when you ship AI in production" />
+  <meta name="author" content="Akarsh Cholapurath" />
+  <title>What breaks when you ship AI in production</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      font-weight: normal;
+      margin-bottom: 0.75em;
+      color: #000000;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 1em;
+    }
+
+    h2 {
+      font-size: 20px;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 4px;
+      margin-top: 2em;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+    }
+
+    ul {
+      margin-left: 30px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 0.75em;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      background: #c0c0c0;
+    }
+
+    .container {
+      background: #ffffff;
+      border: 2px solid #000000;
+      padding: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5em;
+      text-decoration: underline;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #666666;
+      margin-bottom: 1.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <a href="../blog.html" class="back-link">&larr; Back to blog</a>
+
+    <h1>What breaks when you ship AI in production</h1>
+    <p class="meta">January 28, 2026 · by Akarsh</p>
+
+    <p>
+      Shipping AI in production is very different from experimenting with AI in a demo or side project.
+    </p>
+
+    <p>
+      I have worked on and shipped multiple AI systems that reached real users and real traffic. The hard part was never calling an AI API and getting a response back. That part is easy. The real challenges start when AI becomes a <strong>core part of your production workflow</strong>.
+    </p>
+
+    <p>
+      I am talking about large AI requests that take time, fail unpredictably, or return partial results. Requests that need to switch between models when one fails or degrades. Requests that cannot be synchronous because users should not be blocked while a model thinks. Requests that require background processing, real-time updates over WebSockets, structured outputs, retries, and graceful fallbacks.
+    </p>
+
+    <p>
+      Once you enter this territory, things get messy fast.
+    </p>
+
+    <p>
+      Failures often become silent. A background job fails, a webhook never fires, a WebSocket disconnects, or a model returns malformed output. The user sees nothing, logs are scattered across systems, and debugging becomes guesswork. You might know that something broke, but not where, why, or how often.
+    </p>
+
+    <p>
+      This is the part of AI development that is rarely talked about and very painful to learn by experience.
+    </p>
+
+    <h2>Why the Phoenix and Elixir stack fits this problem so well</h2>
+
+    <p>
+      When dealing with async AI workflows, you are not just building features. You are building a distributed system.
+    </p>
+
+    <ul>
+      <li>Reliable background jobs</li>
+      <li>Clear visibility into state transitions</li>
+      <li>Strong guarantees around retries and idempotency</li>
+      <li>Real-time communication with clients</li>
+      <li>Systems that stay predictable under failure</li>
+    </ul>
+
+    <p>
+      Elixir is built on the BEAM, which was designed for long-running, fault-tolerant systems. Concurrency is cheap. Processes fail in isolation. Supervision is not an afterthought, it is the default. This mental model maps extremely well to AI workflows where failure is expected, not exceptional.
+    </p>
+
+    <p>
+      Phoenix provides first-class real-time primitives through channels and WebSockets. Streaming updates, progress notifications, and state changes are natural parts of the framework, not bolt-ons.
+    </p>
+
+    <h2>Oban as the foundation for production AI workloads</h2>
+
+    <p>
+      At the center of all this sits Oban.
+    </p>
+
+    <p>
+      Oban is a durable execution engine backed by Postgres. Jobs are persisted, observable, retryable, and auditable. You can see exactly what ran, what failed, how often it retried, and why it stopped.
+    </p>
+
+    <p>
+      For AI workloads, this matters enormously. AI calls fail. Providers rate-limit. Models return garbage. Network calls timeout. With Oban, failures become explicit states you can reason about instead of silent disappearances.
+    </p>
+
+    <h2>Integration testing should not cost money</h2>
+
+    <p>
+      Another painful part of building AI systems is integration testing.
+    </p>
+
+    <p>
+      When integrating AI into a workflow, things rarely work correctly the first time. Yet in most setups, every failed attempt still results in a real API call and real cost.
+    </p>
+
+    <p>
+      Developers should be able to validate the full workflow without calling an AI provider. A test mode that returns a sample response structure allows everything around the AI call to be verified before real traffic and real money are involved.
+    </p>
+
+    <h2>Local development should feel like production</h2>
+
+    <p>
+      Async workflows are hard to test locally. You often need to deploy just to see what happens end to end.
+    </p>
+
+    <p>
+      A CLI that streams async job events and real-time updates directly to localhost changes this completely. Similar to how the Stripe CLI works for webhooks, it allows developers to see production-like behavior while still working locally.
+    </p>
+
+    <h2>Why I want to solve this problem</h2>
+
+    <p>
+      Developers should not have to rediscover all of this the hard way just to ship a production-grade AI application.
+    </p>
+
+    <p>
+      My goal is to help developers ship AI systems that are reliable by default, observable end to end, designed for failure, and scalable without becoming fragile.
+    </p>
+
+    <p>
+      ModelRiver started as an internal attempt to codify these patterns into something reusable. Async execution, retries, observability, integration testing, and local-first development felt like primitives that should exist out of the box, not custom glue every team rebuilds.
+    </p>
+    
+    <p>
+      If you are dealing with similar production AI pain, this is the problem space I am spending my time on:
+      <a href="https://modelriver.com" target="_blank">https://modelriver.com</a>.
+    </p>
+    
+    <p>
+      Parts of this work are also open source. We share core building blocks like the CLI, real-time client libraries, and example applications on GitHub, so developers can explore the ideas, run them locally, or reuse pieces independently:
+      <a href="https://github.com/modelriver" target="_blank">https://github.com/modelriver</a>.
+    </p>
+    
+    <p>
+      This includes projects like a local development CLI, client libraries for real-time WebSocket streaming, and a sample AI chatbot demonstrating how these pieces fit together in a production-style workflow.
+    </p>
+    
+
+    <p style="margin-top: 2em;">
+      Thanks for reading. You can find me on <a href="https://x.com/akarshcp" target="_blank">X</a>.
+    </p>
+  </div>
+</body>
+</html>
