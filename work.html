@@ -68,7 +68,37 @@
     font-weight: normal;
     color: #000000;
   }
+  /* Dark mode */
+  html.dark-mode body { background: #1a1a1a; color: #e0e0e0; }
+  html.dark-mode .container { background: #1a1a1a; border-color: #333; }
+  html.dark-mode h1, html.dark-mode h2, html.dark-mode p, html.dark-mode strong { color: #e0e0e0; }
+  html.dark-mode h2 { border-bottom-color: #444; }
+  html.dark-mode a { color: #8ab4f8; }
+  html.dark-mode a:visited { color: #8ab4f8; }
+  html.dark-mode a:hover { background: #333; color: #e0e0e0; }
+  html.dark-mode #home-breadcrumb { color: #8ab4f8 !important; }
+  #dark-mode-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-family: inherit; color: #000;
+  }
+  html.dark-mode #dark-mode-toggle { color: #e0e0e0; }
+  #dark-mode-toggle .retro-switch {
+    display: inline-flex; align-items: center;
+    width: 40px; height: 20px; padding: 2px;
+    border: 2px solid #000; background: #fff; cursor: pointer; box-sizing: border-box;
+  }
+  html.dark-mode #dark-mode-toggle .retro-switch { border-color: #555; background: #333; }
+  #dark-mode-toggle .retro-switch .retro-switch-knob {
+    width: 14px; height: 14px; background: #000; flex-shrink: 0; transition: transform 0.15s ease;
+  }
+  #dark-mode-toggle .retro-switch.on .retro-switch-knob { transform: translateX(22px); }
+  html.dark-mode #dark-mode-toggle .retro-switch .retro-switch-knob { background: #e0e0e0; }
+  html.dark-mode #dark-mode-toggle .retro-switch.on { background: #1a1a1a; }
   </style>
+<script>
+  (function() { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); })();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
 <script>
@@ -79,6 +109,12 @@
 </script>
 </head>
 <body>
+  <div id="dark-mode-toggle">
+    <span class="dark-mode-label">Dark mode:</span>
+    <button type="button" class="retro-switch" role="switch" aria-label="Toggle dark mode">
+      <span class="retro-switch-knob"></span>
+    </button>
+  </div>
   <div class="container">
     <a href="./" id="home-breadcrumb" style="color: #000000; font-size: 13px; text-decoration: underline; display: inline-block; margin-bottom: 12px;">Home</a>
     <h1>Work Experience</h1>
@@ -91,10 +127,29 @@
     <p><strong>Arclif.com</strong> — built a social networking platform for architects using <strong>Vue.js</strong> and <strong>Node.js</strong>. Integrated backend services and extended mobile support through <strong>React Native</strong>.</p>
   </div>
   <script>
-    if (window.self !== window.top || window.frameElement !== null) {
-      var el = document.getElementById('home-breadcrumb');
-      if (el) el.style.display = 'none';
-    }
+    (function() {
+      var inIframe = window.self !== window.top || window.frameElement !== null;
+      if (inIframe) {
+        var bc = document.getElementById('home-breadcrumb');
+        if (bc) bc.style.display = 'none';
+        var tgl = document.getElementById('dark-mode-toggle');
+        if (tgl) tgl.style.display = 'none';
+      }
+      var wrap = document.getElementById('dark-mode-toggle');
+      var btn = wrap && wrap.querySelector('.retro-switch');
+      if (btn) {
+        function updateSwitch() {
+          btn.classList.toggle('on', document.documentElement.classList.contains('dark-mode'));
+          btn.setAttribute('aria-checked', document.documentElement.classList.contains('dark-mode'));
+        }
+        updateSwitch();
+        btn.addEventListener('click', function() {
+          document.documentElement.classList.toggle('dark-mode');
+          localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
+          updateSwitch();
+        });
+      }
+    })();
   </script>
 </body>
 </html>
