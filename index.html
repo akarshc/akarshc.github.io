@@ -2,168 +2,697 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Akarsh C - Full-stack Developer and UI/UX Designer Portfolio. Explore my projects, skills, and experience in web development and design.">
-  <meta name="keywords" content="full-stack developer, UI/UX designer, web development, portfolio, Akarsh Cholapurth, JavaScript, React, Python, Elixir">
-  <meta name="author" content="Akarsh Cholapurth">
-  <title>Akarsh Cholapurth | Developer & Designer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Akarsh C - Full-stack Developer and UI/UX Designer Portfolio">
+  <title>Akarsh Cholapurth | Desktop</title>
   <style>
-  strong {
-    font-weight: 600 !important;
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #c0c0c0 url('./assets/images/akarsh-bg-img.jpg') center center / cover no-repeat;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    overflow: hidden;
+    height: 100vh;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: none;
+  }
+  .window-header, .window-resize-handle {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .desktop {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: transparent;
+    padding: 30px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .file-item {
+    display: inline-block;
+    width: 120px;
+    margin: 15px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .file-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .file-item:hover .file-icon {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+  .file-item.selected {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .file-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  .file-icon.folder {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .file-icon.file {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .file-name {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    word-break: break-word;
+    text-align: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.3;
+  }
+  .window {
+    position: absolute;
+    background: #ffffff;
+    border: 2px solid #000000;
+    min-width: 600px;
+    min-height: 400px;
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+    box-shadow: 2px 2px 0px #000000;
+    touch-action: none;
+  }
+  .window.active {
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .window {
+      min-width: 90vw;
+      min-height: 50vh;
+      max-width: 95vw;
+      max-height: 90vh;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%);
+      position: fixed !important;
+    }
+    .window-header {
+      cursor: default !important;
+    }
+    .window-resize-handle {
+      display: none !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .window {
+      min-width: 95vw;
+      min-height: 60vh;
+      max-width: 98vw;
+      max-height: 85vh;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%);
+      position: fixed !important;
+    }
+  }
+  .window-resize-handle {
+    position: absolute;
+    background: transparent;
+    z-index: 10;
+  }
+  .window-resize-handle.nw {
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+  }
+  .window-resize-handle.n {
+    top: 0;
+    left: 16px;
+    right: 16px;
+    height: 16px;
+    cursor: ns-resize;
+  }
+  .window-resize-handle.ne {
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    cursor: nesw-resize;
+  }
+  .window-resize-handle.e {
+    top: 16px;
+    right: 0;
+    bottom: 16px;
+    width: 16px;
+    cursor: ew-resize;
+  }
+  .window-resize-handle.se {
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+  }
+  .window-resize-handle.s {
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 16px;
+    cursor: ns-resize;
+  }
+  .window-resize-handle.sw {
+    bottom: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    cursor: nesw-resize;
+  }
+  .window-resize-handle.w {
+    top: 16px;
+    left: 0;
+    bottom: 16px;
+    width: 16px;
+    cursor: ew-resize;
+  }
+  .window-header {
+    background: #ffffff;
+    color: #000000;
+    padding: 8px 10px;
+    font-weight: normal;
+    font-size: 14px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .window-title {
+    flex: 1;
+    font-weight: normal;
+  }
+  .window-controls {
+    display: flex;
+    gap: 6px;
+  }
+  .window-btn {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #000000;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .window-btn:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  .window-content {
+    background: #ffffff;
+    padding: 0;
+    height: calc(100% - 38px);
+    overflow: hidden;
+    border: none;
+    pointer-events: none;
+  }
+  .window-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #ffffff;
+    pointer-events: auto;
+  }
+  .window-content h1 {
+    font-size: 20px;
+    color: #cc0000;
+    margin-bottom: 0.75em;
+  }
+  .window-content h2 {
+    font-size: 15px;
+    color: #0066cc;
+    border-bottom: 1px solid #0066cc;
+    padding-bottom: 2px;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  .window-content h3 {
+    font-size: 13px;
+    color: #000000;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  .window-content p {
+    color: #000000;
+    margin-bottom: 1em;
+    line-height: 1.5;
+  }
+  .window-content a {
+    color: #0000ff;
+    text-decoration: underline;
+  }
+  .window-content a:visited {
+    color: #800080;
+  }
+  .window-content a:hover {
+    color: #cc0000;
+  }
+  .window-content img {
+    border: 1px solid #000000;
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+  .window-content strong {
+    font-weight: bold;
+    color: #000000;
+  }
+  .window-content ul, .window-content ol {
+    margin-left: 20px;
+    margin-bottom: 1em;
+  }
+  .window-content li {
+    margin-bottom: 0.5em;
+  }
+  .window-content .italic {
+    color: #000000;
+    border-left: 3px solid #0066cc;
+    padding: 8px 12px;
+    margin: 1em 0;
+    background: #f0f0f0;
+    font-style: italic;
+  }
+  @media (min-width: 768px) {
+    .window {
+      min-width: 800px;
+    }
+  }
+  @media (max-width: 767px) {
+    .window-header {
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+    .window-btn {
+      width: 16px;
+      height: 16px;
+      font-size: 11px;
+    }
+    .window-resize-handle {
+      width: 24px !important;
+      height: 24px !important;
+    }
+    .window-resize-handle.n,
+    .window-resize-handle.s {
+      height: 24px !important;
+      left: 24px !important;
+      right: 24px !important;
+    }
+    .window-resize-handle.e,
+    .window-resize-handle.w {
+      width: 24px !important;
+      top: 24px !important;
+      bottom: 24px !important;
+    }
   }
   </style>
+</head>
+<body>
+  <div class="desktop" id="desktop">
+    <div class="file-item" data-type="file" data-file="about">
+      <div class="file-icon file">📄</div>
+      <div class="file-name">About.txt</div>
+    </div>
+    <div class="file-item" data-type="folder" data-folder="blog">
+      <div class="file-icon folder">📁</div>
+      <div class="file-name">Blog</div>
+    </div>
+    <div class="file-item" data-type="folder" data-folder="projects">
+      <div class="file-icon folder">📁</div>
+      <div class="file-name">Projects</div>
+    </div>
+    <div class="file-item" data-type="folder" data-folder="work">
+      <div class="file-icon folder">📁</div>
+      <div class="file-name">Work</div>
+    </div>
+    <div class="file-item" data-type="file" data-file="contact">
+      <div class="file-icon file">📄</div>
+      <div class="file-name">Contact.txt</div>
+    </div>
+  </div>
+
+  <script>
+
+
+  let windowCount = 0;
+  let isDragging = false;
+  let isResizing = false;
+  let currentWindow = null;
+  let dragOffset = { x: 0, y: 0 };
+  let resizeStart = { x: 0, y: 0, width: 0, height: 0, left: 0, top: 0 };
+  let resizeDirection = '';
+  let animationFrameId = null;
+
+  function updateWindowPosition(e) {
+    if (!currentWindow) return;
+    
+    // Don't allow dragging/resizing on mobile
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) return;
+    
+    if (isDragging) {
+      const newLeft = e.clientX - dragOffset.x;
+      const newTop = e.clientY - dragOffset.y;
+      currentWindow.style.transform = 'none';
+      currentWindow.style.left = Math.max(0, newLeft) + 'px';
+      currentWindow.style.top = Math.max(0, newTop) + 'px';
+    }
+    
+    if (isResizing) {
+      const minWidth = 600;
+      const minHeight = 400;
+      const deltaX = e.clientX - resizeStart.x;
+      const deltaY = e.clientY - resizeStart.y;
+      
+      let newWidth = resizeStart.width;
+      let newHeight = resizeStart.height;
+      let newLeft = resizeStart.left;
+      let newTop = resizeStart.top;
+      
+      // Handle horizontal resizing
+      if (resizeDirection.includes('e')) {
+        newWidth = Math.max(minWidth, resizeStart.width + deltaX);
+        currentWindow.style.width = newWidth + 'px';
+      }
+      if (resizeDirection.includes('w')) {
+        newWidth = Math.max(minWidth, resizeStart.width - deltaX);
+        newLeft = resizeStart.left + (resizeStart.width - newWidth);
+        currentWindow.style.width = newWidth + 'px';
+        currentWindow.style.left = newLeft + 'px';
+      }
+      
+      // Handle vertical resizing
+      if (resizeDirection.includes('s')) {
+        newHeight = Math.max(minHeight, resizeStart.height + deltaY);
+        currentWindow.style.height = newHeight + 'px';
+      }
+      if (resizeDirection.includes('n')) {
+        newHeight = Math.max(minHeight, resizeStart.height - deltaY);
+        newTop = resizeStart.top + (resizeStart.height - newHeight);
+        currentWindow.style.height = newHeight + 'px';
+        currentWindow.style.top = newTop + 'px';
+      }
+    }
+  }
+
+  function getEventCoordinates(e) {
+    if (e.touches && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function handleMouseMove(e) {
+    if (isDragging || isResizing) {
+      e.preventDefault();
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      const coords = getEventCoordinates(e);
+      animationFrameId = requestAnimationFrame(() => {
+        updateWindowPosition({ clientX: coords.x, clientY: coords.y });
+      });
+    }
+  }
+
+  function handleMouseUp(e) {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+    isDragging = false;
+    isResizing = false;
+    currentWindow = null;
+    resizeDirection = '';
+  }
+
+  function getOpenWindowCount() {
+    // Count only visible windows (not minimized)
+    return Array.from(document.querySelectorAll('.window.active')).filter(w => w.style.display !== 'none').length;
+  }
+
+  function openWindow(url, title) {
+    windowCount++;
+    const windowId = `window-${windowCount}`;
+    
+    const window = document.createElement('div');
+    window.className = 'window active';
+    window.id = windowId;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      // Center window on mobile
+      window.style.left = '50%';
+      window.style.top = '50%';
+      window.style.transform = 'translate(-50%, -50%)';
+      window.style.position = 'fixed';
+      window.style.width = '90vw';
+      window.style.height = '70vh';
+    } else {
+      // Check how many windows are currently open (before adding this one)
+      const openWindows = getOpenWindowCount();
+      // If there are other windows open, cascade; otherwise center
+      const offset = openWindows > 0 ? openWindows * 30 : 0;
+      window.style.left = '50%';
+      window.style.top = '50%';
+      window.style.transform = `translate(calc(-50% + ${offset}px), calc(-50% + ${offset}px))`;
+      window.style.width = window.innerWidth > 768 ? '800px' : '90%';
+      window.style.height = '600px';
+    }
+
+    window.innerHTML = `
+      <div class="window-header">
+        <span class="window-title">${title}</span>
+        <div class="window-controls">
+          <div class="window-btn" onclick="minimizeWindow('${windowId}')">_</div>
+          <div class="window-btn" onclick="maximizeWindow('${windowId}')" title="Open in new tab">□</div>
+          <div class="window-btn" onclick="closeWindow('${windowId}')">×</div>
+        </div>
+      </div>
+      <div class="window-content">
+        <iframe src="${url}" style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
+      </div>
+      <div class="window-resize-handle nw"></div>
+      <div class="window-resize-handle n"></div>
+      <div class="window-resize-handle ne"></div>
+      <div class="window-resize-handle e"></div>
+      <div class="window-resize-handle se"></div>
+      <div class="window-resize-handle s"></div>
+      <div class="window-resize-handle sw"></div>
+      <div class="window-resize-handle w"></div>
+    `;
+
+    document.body.appendChild(window);
+
+    const isMobileDevice = window.innerWidth <= 768;
+    
+    const header = window.querySelector('.window-header');
+    const startDrag = (e) => {
+      // Disable dragging on mobile
+      if (isMobileDevice) return;
+      if (e.target.classList.contains('window-btn') || e.target.closest('.window-controls')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      isDragging = true;
+      isResizing = false;
+      currentWindow = window;
+      const rect = window.getBoundingClientRect();
+      window.style.transform = 'none';
+      window.style.left = rect.left + 'px';
+      window.style.top = rect.top + 'px';
+      const coords = getEventCoordinates(e);
+      dragOffset.x = coords.x - rect.left;
+      dragOffset.y = coords.y - rect.top;
+    };
+    header.addEventListener('mousedown', startDrag);
+    if (!isMobileDevice) {
+      header.addEventListener('touchstart', startDrag, { passive: false });
+    }
+
+    const resizeHandles = window.querySelectorAll('.window-resize-handle');
+    resizeHandles.forEach(handle => {
+      const startResize = (e) => {
+        // Disable resizing on mobile
+        if (isMobileDevice) return;
+        e.preventDefault();
+        e.stopPropagation();
+        isResizing = true;
+        isDragging = false;
+        currentWindow = window;
+        resizeDirection = handle.classList[1];
+        const coords = getEventCoordinates(e);
+        const rect = window.getBoundingClientRect();
+        window.style.transform = 'none';
+        window.style.left = rect.left + 'px';
+        window.style.top = rect.top + 'px';
+        resizeStart.x = coords.x;
+        resizeStart.y = coords.y;
+        resizeStart.width = rect.width;
+        resizeStart.height = rect.height;
+        resizeStart.left = rect.left;
+        resizeStart.top = rect.top;
+      };
+      handle.addEventListener('mousedown', startResize);
+      if (!isMobileDevice) {
+        handle.addEventListener('touchstart', startResize, { passive: false });
+      }
+    });
+
+    // Bring window to front on click
+    window.addEventListener('mousedown', (e) => {
+      if (!e.target.classList.contains('window-resize-handle') && !e.target.closest('.window-controls')) {
+        document.querySelectorAll('.window').forEach(w => {
+          w.style.zIndex = '1000';
+        });
+        window.style.zIndex = '2000';
+      }
+    });
+  }
+
+  document.addEventListener('mousemove', handleMouseMove, { passive: false });
+  document.addEventListener('mouseup', handleMouseUp);
+  document.addEventListener('touchmove', handleMouseMove, { passive: false });
+  document.addEventListener('touchend', handleMouseUp);
+  document.addEventListener('touchcancel', handleMouseUp);
+
+  function closeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    if (window) {
+      window.remove();
+      // If no windows remain open, reset windowCount so next window opens centered
+      if (getOpenWindowCount() === 0) {
+        windowCount = 0;
+      }
+    }
+  }
+
+  function minimizeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    if (window) {
+      window.style.display = 'none';
+    }
+  }
+
+  function maximizeWindow(windowId) {
+    const win = document.getElementById(windowId);
+    if (!win) return;
+    const iframe = win.querySelector('.window-content iframe');
+    if (iframe && iframe.src) {
+      window.top.location.href = iframe.src;
+    }
+  }
+
+  function openFileOrFolder(item) {
+    const type = item.dataset.type;
+    if (type === 'file') {
+      const file = item.dataset.file;
+      const urlMap = {
+        'about': { url: './about.html', title: 'About.txt' },
+        'contact': { url: './contact.html', title: 'Contact.txt' }
+      };
+      if (urlMap[file]) {
+        openWindow(urlMap[file].url, urlMap[file].title);
+      }
+    } else if (type === 'folder') {
+      const folder = item.dataset.folder;
+      const urlMap = {
+        'blog': { url: './blog.html', title: 'Blog' },
+        'projects': { url: './projects.html', title: 'Projects' },
+        'work': { url: './work.html', title: 'Work' }
+      };
+      if (urlMap[folder]) {
+        openWindow(urlMap[folder].url, urlMap[folder].title);
+      }
+    }
+  }
+
+  document.querySelectorAll('.file-item').forEach(item => {
+    // Desktop: double-click to open
+    item.addEventListener('dblclick', () => {
+      openFileOrFolder(item);
+    });
+
+    // Desktop: single-click to select
+    item.addEventListener('click', (e) => {
+      if (e.detail === 1) {
+        document.querySelectorAll('.file-item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+      }
+    });
+    
+    // Mobile: double-tap to open
+    let lastTap = 0;
+    let tapTimer = null;
+    item.addEventListener('touchend', (e) => {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTap;
+      
+      if (tapLength < 300 && tapLength > 0) {
+        // Double tap detected
+        e.preventDefault();
+        if (tapTimer) {
+          clearTimeout(tapTimer);
+          tapTimer = null;
+        }
+        openFileOrFolder(item);
+        lastTap = 0;
+      } else {
+        // Single tap - select item
+        tapTimer = setTimeout(() => {
+          document.querySelectorAll('.file-item').forEach(i => i.classList.remove('selected'));
+          item.classList.add('selected');
+        }, 200);
+        lastTap = currentTime;
+      }
+    });
+  });
+  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-L8F5V2WRJX');
 </script>
-</head>
-<body class="text-black/80">
-    <div class="space-y-3 p-4 my-4 lg:w-[600px] mx-auto">
-      <nav class="flex justify-end space-x-4 text-sky-600 underline text-sm">
-        <a href="./">Home</a>
-        <a href="./blog.html">Blog</a>
-        <a href="./#about">About</a>
-      </nav>
-      <h1 class="font-semibold text-black/80 text-2xl">Akarsh Cholapurth</h1>
-      <img src="./assets/images/akarsh-pic.jpeg" class="w-[200px]" /> 
-      <div class="text-sm">
-        <p>
-          I’m a maker with experience in web development since 2010, along with UI/UX design, research, full-stack development, and DevOps. I’m currently building <a href="https://modelriver.com" target="_blank" class="text-sky-600 underline">ModelRiver</a>, a developer platform that simplifies connecting and experimenting with AI models. Also I built <a href="https://hyperzoned.com" target="_blank" class="text-sky-600 underline">Hyperzoned</a>, an AI-powered, minimal project management app based on the “3 tasks a day” method.        </p>
-        
-        
-        <h2 class="font-semibold text-xl mt-16 mb-2">What is ModelRiver?</h2>
-        <p>
-          I’ve worked with many AI models and APIs, and while each is powerful, integrating and managing them quickly becomes repetitive and messy. Every provider has its own SDKs, auth systems, and response formats. I built ModelRiver to simplify this with a single, consistent layer for developers to connect, experiment, and ship AI-powered products faster.
-        </p>
-
-        
-        <h2 class="font-semibold text-xl mt-16 mb-2">What is Hyperzoned?</h2>
-        <p>
-          When I want to start a task, should I really have to open a kanban board, check what’s pending, break it into atomic subtasks, and then begin? That feels like too many steps.  
-          <br><br>
-          In Hyperzoned, you can <strong>create a project</strong>, then define goals (weekly or monthly) and add milestones within those goals. That’s it. It’s a one-time setup, similar to creating a new task in a kanban board (but much less often).  
-          <br><br>
-          Each morning, you can click <strong>"New Task"</strong>, select the goal and milestone you want to work on (your previous one is auto-selected if you’re continuing), and Hyperzoned’s AI will generate a focused task by breaking it into small, actionable steps. you can create up to three meaningful tasks per day across different projects, goals, or milestones, helping you stay focused without overwhelm.
-        </p>
-        
-        <h2 class="font-semibold text-xl mt-16 mb-2">Previous projects</h2>
-        <p>
-          I have worked on several projects before Hyperzoned. Notable ones are: <br><br> 
-          <span class="font-semibold text-sky-800">Vieww.me</span> — a web app that helps users create a single-page web portfolio with minimal information in under 3 minutes. 
-          The app was featured on 
-          <a target="_blank" href="https://www.producthunt.com/products/vieww" class="text-sky-600 underline">Product Hunt</a> 
-          and gained good traction in the market but was eventually shut down due to the lack of a sustainable business model.
-        </p>
-        <br>
-        <p>
-          <span class="font-semibold text-sky-800">StickWithSEO.com</span> — a website that analyzed any webpage’s SEO performance using a custom-defined search engine algorithm back in 2016–17. 
-          Prior to that, I created several blogs, WordPress plugins, and themes.
-        </p>
-        
-        <h2 class="font-semibold text-xl mt-16 mb-2">Work experience</h2>
-        
-        <div class="space-y-6">
-        
-          <div>
-            <p>
-              <span class="font-semibold text-sky-800">Voicenotes.com (Minimalister)</span> — 
-              an AI-powered voice recording and note-taking app that leverages the latest AI models such as ChatGPT and Claude to record, transcribe, and generate structured notes from speech. 
-              Integrated <strong>Firebase</strong> for real-time server-driven data using WebSockets, and developed with <strong>Nuxt 3</strong>, <strong>Laravel</strong>, and a self-hosted <strong>RAG model</strong>.
-            </p>
-          </div>
-        
-          <div>
-            <p>
-              <span class="font-semibold text-sky-800">BuyMeACoffee.com (Minimalister)</span> — 
-              spearheaded frontend development for key features including payments, memberships, and e-commerce workflows. 
-              Collaborated closely with design and backend teams to ship features used by millions of creators worldwide.
-            </p>
-          </div>
-        
-          <div>
-            <p>
-              <span class="font-semibold text-sky-800">Bio.link (Minimalister)</span> — 
-              developed a single-page application (SPA) enabling creators to build customizable link pages with custom domain support and email subscriptions. 
-              Designed and implemented intuitive, user-friendly interfaces focused on creator experience.
-            </p>
-          </div>
-        
-          <div>
-            <p>
-              <span class="font-semibold text-sky-800">Arclif.com</span> — 
-              built a social networking platform for architects using <strong>Vue.js</strong> and <strong>Node.js</strong>. 
-              Integrated backend services and extended mobile support through <strong>React Native</strong>.
-            </p>
-          </div>
-        
-        </div>
-
-        
-        <h3 class="font-semibold text-xl mt-16 mb-2">How did I end up in development?</h3>
-        
-        <p>
-          My passion for creating things online started early. Back in the 2010s, I loved experimenting with free website builders like Blogspot, WordPress, and Google Sites, even using free <strong>.tk</strong> domains to publish small projects. 
-          To make my Blogspot themes look more unique and professional, I began learning <strong>HTML</strong> and <strong>CSS</strong>. 
-          What started as simple theme tweaks soon turned into a genuine interest in web design and development.
-        </p>
-        <br>
-        <p>
-          Eventually, I registered my first domain and hosted a WordPress site on HostGator using FTP and FileZilla. 
-          Working with WordPress introduced me to <strong>PHP</strong>, which felt confusing at first without any prior programming experience. 
-          Still, I managed to make small edits and customizations, and even designed graphics and logos for my websites.
-        </p>
-        <br>
-        <p>
-          Around the same time, I was pursuing my higher studies and had just a basic understanding of <strong>C++</strong> from school. 
-          I monetized my blog through <strong>Google AdSense</strong> and still remember receiving my <a href="./assets/images/first-cheque.jpg" target="_blank" class="text-sky-600 underline">first revenue cheque from Google</a>. 
-          Back then, I posted tech blogs daily, optimizing them with SEO and keyword strategies and surprisingly, it worked quite well!
-        </p>
-        <br>
-        <p>
-          During my second year of college, things slowed down, and I had to pause blogging for a while. 
-          A year later, I discovered something fascinating: people were building incredible web applications known as <strong>Single Page Applications (SPAs)</strong>. 
-          Curious, I took my first <strong>React course</strong> by <a href="https://zerotomastery.io/" class="text-sky-600 underline" target="_blank">Andrei Neagoie's Zero to mastery</a>. I didn’t code along at first, just watched. 
-          But for my final year project, I built <strong>StickWithSEO.com</strong> — a PHP-based web app that analyzed website SEO using basic scraping and algorithms. 
-          That was my first full programming project, and it made me realize how much I truly loved building software.
-        </p>
-        <br>
-        <p>
-          After that, I revisited the React course, this time coding alongside it. 
-          I quickly picked up <strong>React</strong>, <strong>Node.js (Express.js)</strong>, <strong>Git</strong>, and <strong>PostgreSQL</strong>. 
-          Soon after, a friend and I started building a new web app — <strong>Vieww.me</strong>. 
-          That project taught me more than any course could: from frontend optimization to server deployment.
-        </p>
-        <br>
-        <p class="italic text-gray-700">
-          “I started coding to solve my own problems, and I never stopped learning.”
-        </p>
-
-        
-        <h2 class="font-semibold text-xl mt-16 mb-2" id="about">A bit about me</h2>
-        <p>
-          I would describe myself as a true "Jack of all trades, master of none", and I think that’s perfectly fine. 
-          Over time, I’ve learned to embrace this as a strength because it allows me to explore and do many things instead of just one. 
-          I’ve realized that with enough effort and focus, I can create meaningful and impactful work, and that’s exactly what I’m doing now.
-        </p>
-        <br>
-        <p>
-          Outside of work, I enjoy watching movies, photography (<a href="./assets/images/old-photograph.jpg" target="_blank" class="text-sky-600 underline">10+ years old photograph</a>), following football, and keeping up with the latest in technology, 
-          including programming, new gadgets, innovative concepts, AI, UI/UX, and apps.
-        </p>
-        
-        <h2 class="font-semibold text-xl mt-16 mb-2">Contact</h2>
-        <p>
-          You can reach out to me on: <a target="_blank" href="mailto:akarsh@hyperzoned.com" class="text-sky-600 underline">Email</a>, <a target="_blank" href="https://x.com/akarshcp" class="text-sky-600 underline">X</a>, <a target="_blank" href="https://linkedin.com/in/akarshc" class="text-sky-600 underline">LinkedIn</a>, or <a target="_blank" href="https://github.com/akarshc" class="text-sky-600 underline">GitHub</a>. 
-          I’d love to hear from you if you have something interesting to share.
-        </p>
-      </div>
-
-    </div>
    </body>
 </html>
