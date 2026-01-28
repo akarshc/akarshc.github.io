@@ -726,8 +726,17 @@
     const win = document.getElementById(windowId);
     if (!win) return;
     const iframe = win.querySelector('.window-content iframe');
-    if (iframe && iframe.src) {
-      window.top.location.href = iframe.src;
+    if (!iframe) return;
+    let url = iframe.src;
+    try {
+      if (iframe.contentWindow && iframe.contentWindow.location.href) {
+        url = iframe.contentWindow.location.href;
+      }
+    } catch (e) {
+      /* cross-origin: keep iframe.src */
+    }
+    if (url) {
+      window.top.location.href = url;
     }
   }
 
