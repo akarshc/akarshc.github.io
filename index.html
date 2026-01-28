@@ -626,8 +626,8 @@
     if (type === 'file') {
       const file = item.dataset.file;
       const urlMap = {
-        'about': { url: './about.html', title: 'About.txt' },
-        'contact': { url: './contact.html', title: 'Contact.txt' }
+        'about': { url: './about', title: 'About.txt' },
+        'contact': { url: './contact', title: 'Contact.txt' }
       };
       if (urlMap[file]) {
         openWindow(urlMap[file].url, urlMap[file].title);
@@ -635,9 +635,9 @@
     } else if (type === 'folder') {
       const folder = item.dataset.folder;
       const urlMap = {
-        'blog': { url: './blog.html', title: 'Blog' },
-        'projects': { url: './projects.html', title: 'Projects' },
-        'work': { url: './work.html', title: 'Work' }
+        'blog': { url: './blog', title: 'Blog' },
+        'projects': { url: './projects', title: 'Projects' },
+        'work': { url: './work', title: 'Work' }
       };
       if (urlMap[folder]) {
         openWindow(urlMap[folder].url, urlMap[folder].title);
