@@ -1,115 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="What breaks when you ship AI in production" />
-  <meta name="author" content="Akarsh Cholapurath" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What breaks when you ship AI in production">
+  <meta name="author" content="Akarsh Cholapurath">
   <title>What breaks when you ship AI in production</title>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #ffffff;
-      color: #000000;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      padding: 20px;
-    }
-
-    h1, h2 {
-      font-weight: normal;
-      margin-bottom: 0.75em;
-    }
-
-    h1 { font-size: 26px; margin-bottom: 1em; }
-
-    h2 {
-      font-size: 20px;
-      border-bottom: 2px dashed #000;
-      padding-bottom: 4px;
-      margin-top: 2.2em;
-    }
-
-    p { margin-bottom: 1.5em; }
-
-    ul { margin-left: 28px; margin-bottom: 1.5em; }
-    li { margin-bottom: 0.75em; }
-
-    pre {
-      background: #f4f4f4;
-      border: 1px solid #000;
-      padding: 14px;
-      margin: 1.5em 0;
-      overflow-x: auto;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-
-    a { color: #000; text-decoration: underline; }
-    a:hover { background: #c0c0c0; }
-
-    .container {
-      max-width: 768px;
-      margin: 0 auto;
-      padding: 8px;
-    }
-
-    .meta {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 1.5em;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1.5em;
-      text-decoration: underline;
-    }
-    /* Dark mode */
-    html.dark-mode body { background: #1a1a1a; color: #e0e0e0; }
-    html.dark-mode .container { background: #1a1a1a; border-color: #333; }
-    html.dark-mode h1, html.dark-mode h2, html.dark-mode p { color: #e0e0e0; }
-    html.dark-mode h2 { border-bottom-color: #444; }
-    html.dark-mode a { color: #8ab4f8; }
-    html.dark-mode a:visited { color: #8ab4f8; }
-    html.dark-mode a:hover { background: #333; color: #e0e0e0; }
-    html.dark-mode .meta { color: #999; }
-    html.dark-mode .back-link { color: #8ab4f8; }
-    html.dark-mode .back-link:hover { background: #333; color: #e0e0e0; }
-    html.dark-mode pre { background: #252525; border-color: #444; color: #e0e0e0; }
-    html.dark-mode code { color: #e0e0e0; }
-    html.dark-mode li { color: #e0e0e0; }
-    #dark-mode-toggle {
-      position: relative; width: 100%;
-      display: flex; justify-content: flex-end; align-items: center; gap: 8px;
-      padding: 16px 16px 0 0; box-sizing: border-box;
-      font-size: 13px; font-family: inherit; color: #000;
-    }
-    html.dark-mode #dark-mode-toggle { color: #e0e0e0; }
-    #dark-mode-toggle .retro-switch {
-      display: inline-flex; align-items: center;
-      width: 40px; height: 20px; padding: 2px;
-      border: 2px solid #000; background: #fff; cursor: pointer; box-sizing: border-box;
-    }
-    html.dark-mode #dark-mode-toggle .retro-switch { border-color: #555; background: #333; }
-    #dark-mode-toggle .retro-switch .retro-switch-knob {
-      width: 14px; height: 14px; background: #000; flex-shrink: 0; transition: transform 0.15s ease;
-    }
-    #dark-mode-toggle .retro-switch.on .retro-switch-knob { transform: translateX(22px); }
-    html.dark-mode #dark-mode-toggle .retro-switch .retro-switch-knob { background: #e0e0e0; }
-    html.dark-mode #dark-mode-toggle .retro-switch.on { background: #1a1a1a; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script>
-    (function() { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); })();
+    (function() { try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); } catch (e) {} })();
   </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
@@ -120,100 +22,80 @@
     gtag('config', 'G-L8F5V2WRJX');
   </script>
 </head>
-
 <body>
-  <div id="dark-mode-toggle">
-    <span class="dark-mode-label">Dark mode:</span>
-    <button type="button" class="retro-switch" role="switch" aria-label="Toggle dark mode">
-      <span class="retro-switch-knob"></span>
-    </button>
-  </div>
-<div class="container">
+  <header class="site-nav">
+    <nav aria-label="Site">
+      <a href="../">Home</a> |
+      <a href="../about">About</a> |
+      <a href="../work">Work</a> |
+      <a href="../projects">Projects</a> |
+      <a href="../blog.html">Writing</a> |
+      <a href="../contact">Contact</a> |
+      <button type="button" class="theme-toggle">Dark mode</button>
+    </nav>
+  </header>
+  <hr>
 
-<a href="../blog.html" class="back-link">&larr; Back to blog</a>
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../">Home</a></li>
+        <li><a href="../blog.html">Writing</a></li>
+        <li aria-current="page">What breaks when you ship AI in production</li>
+      </ol>
+    </nav>
 
-<h1>What breaks when you ship AI in production</h1>
-<p class="meta">January 28, 2026 · by Akarsh</p>
+    <h1>What breaks when you ship AI in production</h1>
+    <p class="meta">January 28, 2026 &middot; by Akarsh</p>
+    <p class="lede">Shipping AI in production is very different from experimenting with AI in a demo or a side project.</p>
 
-<p>
-  Shipping AI in production is very different from experimenting with AI in a demo or side project.
-</p>
+    <p>I&rsquo;ve worked on and shipped several AI systems that reached real users and real traffic. The hard part was never calling an AI API and getting a response back. That part is easy. The real challenges begin when AI becomes a <strong>core part of your production workflow</strong>.</p>
 
-<p>
-  I have worked on and shipped multiple AI systems that reached real users and real traffic. The hard part was never calling an AI API and getting a response back. That part is easy. The real challenges start when AI becomes a <strong>core part of your production workflow</strong>.
-</p>
+    <p>Once AI requests become large, slow, and asynchronous, you stop building features and start running a distributed system.</p>
 
-<p>
-  Once AI requests become large, slow, and asynchronous, you stop building features and start running a distributed system.
-</p>
+    <h2>Failure modes I did not expect</h2>
 
-<h2>Failure modes I did not expect</h2>
-
-<p>
-  The first production AI system I shipped did not fail loudly. It failed quietly.
-</p>
+    <p>The first production AI system I shipped did not fail loudly. It failed quietly.</p>
 
 <pre><code>User clicks "Generate"
 → API enqueues background job
 → API returns 200 OK
 </code></pre>
 
-<p>
-  Everything meaningful happened after the HTTP request had already completed.
-</p>
+    <p>Everything meaningful happened after the HTTP request had already completed.</p>
 
-<p>
-  In one case, a background job crashed after a partial model response. No exception bubbled up. No retry triggered. The user waited indefinitely for a WebSocket message that never arrived.
-</p>
+    <p>In one case, a background job crashed after a partial model response. No exception bubbled up. No retry triggered. The user waited indefinitely for a WebSocket message that never arrived.</p>
 
-<p>
-  In another case, a model returned valid JSON that passed schema validation but was semantically wrong. Downstream code treated it as success, and corrupted state propagated silently.
-</p>
+    <p>In another, a model returned valid JSON that passed schema validation but was semantically wrong. Downstream code treated it as a success, and corrupted state spread silently.</p>
 
-<p>
-  Schema validation can ensure structure, but it cannot tell you whether the content is meaningfully correct. That distinction only became obvious after things broke.
-</p>
+    <p>Schema validation can guarantee structure, but it cannot tell you whether the content is actually correct. That distinction only became obvious after things broke.</p>
 
-<h2>Provider outages and the illusion of reliability</h2>
+    <h2>Provider outages and the illusion of reliability</h2>
 
-<p>
-  Early on, I assumed model providers would be “mostly up” and that occasional errors were acceptable.
-</p>
+    <p>Early on, I assumed model providers would be &ldquo;mostly up&rdquo; and that occasional errors were acceptable.</p>
 
-<p>
-  In reality, providers degrade in subtle ways. Latency spikes. Requests start timing out. Partial responses appear. Entire regions go unavailable without a clear outage signal.
-</p>
+    <p>In reality, providers degrade in subtle ways. Latency spikes. Requests start timing out. Partial responses appear. Entire regions go unavailable without any clear outage signal.</p>
 
-<p>
-  When AI is deeply embedded in your workflow, a single degraded provider can stall the entire application. Without a strategy for handling provider failure, the app effectively goes dark.
-</p>
+    <p>When AI is deeply embedded in your workflow, a single degraded provider can stall the entire application. Without a strategy for provider failure, the app effectively goes dark.</p>
 
-<h2>Why async AI failures go silent</h2>
+    <h2>Why async AI failures go silent</h2>
 
-<p>
-  Most AI integrations are written as if the system is synchronous, even when it is not.
-</p>
+    <p>Most AI integrations are written as if the system were synchronous, even when it is not.</p>
 
 <pre><code>POST /generate
   enqueue(job)
   return 200
 </code></pre>
 
-<p>
-  Everything important happens after the response is sent. If a job stalls, times out, or crashes, the user-facing request has no way to reflect that unless state is explicitly tracked.
-</p>
+    <p>Everything important happens after the response is sent. If a job stalls, times out, or crashes, the user-facing request has no way to reflect it unless state is tracked explicitly.</p>
 
-<p>
-  Retries often made this worse. A retry might eventually succeed, masking the original failure and making root-cause analysis difficult.
-</p>
+    <p>Retries often made this worse. A retry might eventually succeed, masking the original failure and making root-cause analysis difficult.</p>
 
-<h2>Before and after: making async state explicit</h2>
+    <h2>Before and after: making async state explicit</h2>
 
-<p>
-  One of the biggest improvements came from making async state transitions explicit instead of implicit.
-</p>
+    <p>One of the biggest improvements came from making async state transitions explicit instead of implicit.</p>
 
-<pre><code>// BEFORE: implicit state
+<pre><code><span class="comment">// BEFORE: implicit state</span>
 async function generate(jobId, input) {
   const result = await callAIModel(input)
   await saveResult(jobId, result)
@@ -221,7 +103,7 @@ async function generate(jobId, input) {
 }
 </code></pre>
 
-<pre><code>// AFTER: explicit state tracking
+<pre><code><span class="comment">// AFTER: explicit state tracking</span>
 async function generate(jobId, input) {
   updateState(jobId, "started")
 
@@ -241,49 +123,31 @@ async function generate(jobId, input) {
 }
 </code></pre>
 
-<p>
-  Once state transitions were persisted, failures became boring. It was always clear where a request stopped progressing.
-</p>
+    <p>Once state transitions were persisted, failures became boring. It was always clear exactly where a request had stopped.</p>
 
-<h2>Cost explosions and missing rate limits</h2>
+    <h2>Cost explosions and missing rate limits</h2>
 
-<p>
-  One painful lesson was how quickly costs can spiral when AI endpoints are exposed without strict limits.
-</p>
+    <p>One painful lesson was how quickly costs can spiral when AI endpoints are exposed without strict limits.</p>
 
-<p>
-  A single misbehaving client or retry loop can generate thousands of requests in minutes. Because AI usage maps directly to cost, small bugs can turn into billing incidents overnight.
-</p>
+    <p>A single misbehaving client or retry loop can generate thousands of requests in minutes. Because AI usage maps directly to cost, small bugs can become billing incidents overnight.</p>
 
-<p>
-  Treating rate limiting and quotas as optional is a mistake that only has to happen once.
-</p>
+    <p>Treating rate limiting and quotas as optional is a mistake you only need to make once.</p>
 
-<h2>Debugging without observability is guesswork</h2>
+    <h2>Debugging without observability is guesswork</h2>
 
-<p>
-  When something went wrong, the first question was always the same: “Is the model slow, or is the system slow?”
-</p>
+    <p>Whenever something went wrong, the first question was always the same: &ldquo;Is the model slow, or is the system slow?&rdquo;</p>
 
-<p>
-  In one system, roughly 70% of perceived model slowness turned out to be job backlog and coordination delay, not model execution.
-</p>
+    <p>In one system, roughly 70% of perceived model slowness turned out to be job backlog and coordination delay, not model execution.</p>
 
-<p>
-  Without end-to-end request timelines, state visibility, and error context, debugging becomes speculation instead of diagnosis.
-</p>
+    <p>Without end-to-end request timelines, visibility into state, and error context, debugging becomes speculation instead of diagnosis.</p>
 
-<h2>Integration testing was burning money</h2>
+    <h2>Integration testing was burning money</h2>
 
-<p>
-  During early development, most failures had nothing to do with model quality. Prompts changed. Response structures evolved. Parsers broke. State handling was wrong.
-</p>
+    <p>During early development, most failures had nothing to do with model quality. Prompts changed. Response structures evolved. Parsers broke. State handling was wrong.</p>
 
-<p>
-  Yet every failed attempt still resulted in a real API call and real cost.
-</p>
+    <p>Yet every failed attempt still meant a real API call and a real cost.</p>
 
-<pre><code>// Deterministic response for integration testing
+<pre><code><span class="comment">// Deterministic response for integration testing</span>
 return {
   status: "completed",
   output: {
@@ -293,86 +157,50 @@ return {
 }
 </code></pre>
 
-<p>
-  Separating workflow correctness from model correctness made iteration faster and dramatically cheaper.
-</p>
+    <p>Separating workflow correctness from model correctness made iteration faster and dramatically cheaper.</p>
 
-<h2>Structured output prevents entire classes of bugs</h2>
+    <h2>Structured output prevents entire classes of bugs</h2>
 
-<p>
-  One recurring source of breakage was unstructured or partially structured model output.
-</p>
+    <p>One recurring source of breakage was unstructured or partially structured model output.</p>
 
-<p>
-  Ad-hoc parsing, regex extraction, and best-effort assumptions worked in demos, but failed unpredictably in production.
-</p>
+    <p>Ad-hoc parsing, regex extraction, and best-effort assumptions worked in demos but failed unpredictably in production.</p>
 
-<p>
-  Enforcing a strict output structure eliminated whole categories of downstream bugs that were otherwise hard to detect.
-</p>
+    <p>Enforcing a strict output structure eliminated whole categories of downstream bugs that would otherwise have been hard to detect.</p>
 
-<h2>Local development was lying to me</h2>
+    <h2>Local development was lying to me</h2>
 
-<p>
-  Locally, jobs ran instantly. WebSockets never disconnected. Timeouts never triggered.
-</p>
+    <p>Locally, jobs ran instantly. WebSockets never disconnected. Timeouts never triggered.</p>
 
-<p>
-  The first real failures only appeared after deployment. Being able to observe async execution locally changed how early problems were caught.
-</p>
+    <p>The first real failures only appeared after deployment. Being able to observe async execution locally changed how early I caught problems.</p>
 
-<h2>What I wish I had known earlier</h2>
+    <h2>What I wish I had known earlier</h2>
 
-<ul>
-  <li>Async AI systems fail by omission, not exception.</li>
-  <li>Retries without visibility hide more bugs than they fix.</li>
-  <li>Provider outages are inevitable, not rare.</li>
-  <li>Most AI “slowness” is coordination and queueing.</li>
-  <li>Unbounded usage turns bugs into billing incidents.</li>
-  <li>Structured output prevents entire classes of failure.</li>
-</ul>
+    <ul>
+      <li>Async AI systems fail by omission, not by exception.</li>
+      <li>Retries without visibility hide more bugs than they fix.</li>
+      <li>Provider outages are inevitable, not rare.</li>
+      <li>Most AI &ldquo;slowness&rdquo; is coordination and queueing.</li>
+      <li>Unbounded usage turns bugs into billing incidents.</li>
+      <li>Structured output prevents entire classes of failure.</li>
+    </ul>
 
-<p>
-  Once I started treating AI workflows as distributed systems first and model calls second, failures became easier to reason about and far less surprising.
-</p>
+    <p>Once I started treating AI workflows as distributed systems first and model calls second, failures became easier to reason about and far less surprising.</p>
 
-<h2>Closing thoughts</h2>
+    <h2>Closing thoughts</h2>
 
-<p>
-  Developers should not have to rediscover these lessons the hard way just to ship a production-grade AI application.
-</p>
+    <p>Developers shouldn&rsquo;t have to rediscover these lessons the hard way just to ship a production-grade AI application.</p>
 
-<p>
-  I’m currently working on ModelRiver, which grew out of repeatedly hitting these exact problems while shipping AI systems in production.
-</p>
+    <p>I&rsquo;m now working on ModelRiver, which grew out of hitting these exact problems again and again while shipping AI systems in production.</p>
 
-<p style="margin-top: 2em;">
-  Thanks for reading. You can find me on <a href="https://x.com/akarshcp" target="_blank">X/@akarshcp</a>.
-</p>
+    <p class="colophon">Thanks for reading. You can find me on <a href="https://x.com/akarshcp" target="_blank" rel="noopener">X/@akarshcp</a>.</p>
+  </main>
 
-</div>
-  <script>
-    (function() {
-      var inIframe = window.self !== window.top || window.frameElement !== null;
-      if (inIframe) {
-        var tgl = document.getElementById('dark-mode-toggle');
-        if (tgl) tgl.style.display = 'none';
-      }
-      var wrap = document.getElementById('dark-mode-toggle');
-      var btn = wrap && wrap.querySelector('.retro-switch');
-      if (btn) {
-        function updateSwitch() {
-          btn.classList.toggle('on', document.documentElement.classList.contains('dark-mode'));
-          btn.setAttribute('aria-checked', document.documentElement.classList.contains('dark-mode'));
-        }
-        updateSwitch();
-        btn.addEventListener('click', function() {
-          document.documentElement.classList.toggle('dark-mode');
-          localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
-          updateSwitch();
-        });
-      }
-    })();
-  </script>
+  <hr>
+  <nav class="page-turn" aria-label="Page navigation">
+    <a href="../blog.html" class="prev">&laquo; Writing</a>
+    <a href="./relearning-programming" class="next">Next essay &raquo;</a>
+  </nav>
+
+  <script src="../assets/script/theme.js"></script>
 </body>
 </html>

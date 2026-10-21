@@ -1,231 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Why I chose Phoenix LiveView over Rails, Laravel, and Next.js" />
-  <meta name="author" content="Akarsh Cholapurth" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why I chose Phoenix LiveView over Rails, Laravel, and Next.js">
+  <meta name="author" content="Akarsh Cholapurth">
   <title>Why I chose Phoenix LiveView over Rails, Laravel, and Next.js</title>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    background: #ffffff;
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    margin: 0;
-    padding: 20px;
-    image-rendering: pixelated;
-  }
-  strong {
-    font-weight: normal !important;
-    color: #000000;
-  }
-  h1, h2, h3 {
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-weight: normal;
-    margin-top: 2em;
-    margin-bottom: 0.75em;
-  }
-  h1 {
-    font-size: 26px;
-    margin-top: 0;
-    margin-bottom: 1em;
-  }
-  h2 {
-    font-size: 20px;
-    border-bottom: 2px dashed #000;
-    padding-bottom: 4px;
-    margin-top: 2em;
-  }
-  h3 {
-    font-size: 17px;
-    color: #000000;
-  }
-  a {
-    color: #000000;
-    text-decoration: underline;
-  }
-  a:visited {
-    color: #000000;
-  }
-  a:hover {
-    color: #000000;
-    background: #c0c0c0;
-  }
-  .container {
-    background: #ffffff;
-    padding: 8px;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 768px;
-  }
-  img {
-    border: 2px solid #000000;
-    max-width: 100%;
-    height: auto;
-    margin: 20px 0;
-    image-rendering: pixelated;
-  }
-  p {
-    color: #000000;
-    margin-bottom: 1.5em;
-    text-align: left;
-  }
-  .italic {
-    color: #000000;
-    border-left: 3px solid #000000;
-    padding: 16px 20px;
-    margin: 2em 0;
-    background: #f0f0f0;
-    font-style: italic;
-  }
-  ul, ol {
-    margin-left: 30px;
-    margin-bottom: 1.5em;
-  }
-  li {
-    margin-bottom: 0.75em;
-    color: #000000;
-  }
-  .back-link {
-    color: #000000;
-    text-decoration: underline;
-    font-size: 16px;
-    margin-bottom: 1.5em;
-    display: inline-block;
-  }
-  .back-link:hover {
-    color: #000000;
-    background: #c0c0c0;
-  }
-  .back-link:visited {
-    color: #000000;
-  }
-  /* Dark mode */
-  html.dark-mode body { background: #1a1a1a; color: #e0e0e0; }
-  html.dark-mode .container { background: #1a1a1a; border-color: #333; }
-  html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, html.dark-mode p, html.dark-mode strong { color: #e0e0e0; }
-  html.dark-mode h2 { border-bottom-color: #444; }
-  html.dark-mode a { color: #8ab4f8; }
-  html.dark-mode a:visited { color: #8ab4f8; }
-  html.dark-mode a:hover { background: #333; color: #e0e0e0; }
-  html.dark-mode img { border-color: #444; }
-  html.dark-mode .italic { background: #252525; border-left-color: #444; color: #e0e0e0; }
-  html.dark-mode .back-link { color: #8ab4f8; }
-  html.dark-mode .back-link:hover { background: #333; color: #e0e0e0; }
-  html.dark-mode .back-link:visited { color: #8ab4f8; }
-  html.dark-mode li { color: #e0e0e0; }
-  #dark-mode-toggle {
-    position: relative; width: 100%;
-    display: flex; justify-content: flex-end; align-items: center; gap: 8px;
-    padding: 16px 16px 0 0; box-sizing: border-box;
-    font-size: 13px; font-family: inherit; color: #000;
-  }
-  html.dark-mode #dark-mode-toggle { color: #e0e0e0; }
-  #dark-mode-toggle .retro-switch {
-    display: inline-flex; align-items: center;
-    width: 40px; height: 20px; padding: 2px;
-    border: 2px solid #000; background: #fff; cursor: pointer; box-sizing: border-box;
-  }
-  html.dark-mode #dark-mode-toggle .retro-switch { border-color: #555; background: #333; }
-  #dark-mode-toggle .retro-switch .retro-switch-knob {
-    width: 14px; height: 14px; background: #000; flex-shrink: 0; transition: transform 0.15s ease;
-  }
-  #dark-mode-toggle .retro-switch.on .retro-switch-knob { transform: translateX(22px); }
-  html.dark-mode #dark-mode-toggle .retro-switch .retro-switch-knob { background: #e0e0e0; }
-  html.dark-mode #dark-mode-toggle .retro-switch.on { background: #1a1a1a; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script>
-    (function() { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); })();
+    (function() { try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); } catch (e) {} })();
   </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L8F5V2WRJX');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8F5V2WRJX');
+  </script>
 </head>
 <body>
-  <div id="dark-mode-toggle">
-    <span class="dark-mode-label">Dark mode:</span>
-    <button type="button" class="retro-switch" role="switch" aria-label="Toggle dark mode">
-      <span class="retro-switch-knob"></span>
-    </button>
-  </div>
-  <div class="container">
-    <a href="../blog.html" class="back-link">&larr; Back to blog</a>
+  <header class="site-nav">
+    <nav aria-label="Site">
+      <a href="../">Home</a> |
+      <a href="../about">About</a> |
+      <a href="../work">Work</a> |
+      <a href="../projects">Projects</a> |
+      <a href="../blog.html">Writing</a> |
+      <a href="../contact">Contact</a> |
+      <button type="button" class="theme-toggle">Dark mode</button>
+    </nav>
+  </header>
+  <hr>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../">Home</a></li>
+        <li><a href="../blog.html">Writing</a></li>
+        <li aria-current="page">Why I chose Phoenix LiveView</li>
+      </ol>
+    </nav>
 
     <h1>Why I chose Phoenix LiveView over Rails, Laravel, and Next.js</h1>
-    <p style="color: #666666; font-size: 13px; margin-bottom: 1.5em;">October 16, 2025 · by Akarsh</p>
+    <p class="meta">October 16, 2025 &middot; by Akarsh</p>
+    <p class="lede">First things first: why do we code? To solve problems in the best way we can.</p>
 
-    <div>
-      <p>First things first, why do we code? To solve problems in the most optimal way possible.</p>
+    <p>For me, the number one factor is speed, both application speed and development speed. That&rsquo;s exactly what led me to <strong><a href="https://www.phoenixframework.org/" target="_blank" rel="noopener">Phoenix LiveView</a></strong>.</p>
 
-      <p>For me, the number one factor is speed: both application speed and development speed. That's exactly what led me to <strong><a href="https://www.phoenixframework.org/" target="_blank">Phoenix LiveView</a></strong>.</p>
+    <p>If I had chosen React or Next.js with Laravel, or even Inertia.js with Laravel, I would have had to maintain both sides of the stack, frontend and backend. As a solo developer, I didn&rsquo;t have time to manage state in two different places. I needed a solid monolithic solution that could handle everything together.</p>
 
-      <p>If I had chosen React or Next.js with Laravel, or even Inertia.js with Laravel, I would have had to maintain both sides of the stack, frontend and backend. As a solo developer, I didn't have the time to manage state in two different places. I needed a solid monolithic solution that could handle everything together.</p>
+    <p>So I looked into Laravel Livewire and Rails Hotwire. Both are great tools that simplify frontend work without leaning too heavily on JavaScript. I even considered going full JavaScript with Next.js, but I&rsquo;ve never been a big fan of JS on the backend.</p>
 
-      <p>So I looked into Laravel Livewire and Rails Hotwire. Both are great tools that simplify frontend work without depending too much on JavaScript. I even thought about going full JavaScript with Next.js, but I've never been a big fan of using JS on the backend.</p>
+    <p>Rails Hotwire really caught my attention, especially because of how fast you can build an MVP with Rails. But I still needed background jobs, real-time updates, and two-way communication that just works. All of that is possible in Rails and Laravel, but it takes more effort to set up.</p>
 
-      <p>Rails Hotwire really caught my attention, especially because of how fast you can build an MVP with Rails. But I still needed background jobs, real-time updates, and two-way communication that just works. Those things are possible in Rails and Laravel, but they take a bit more effort to set up.</p>
+    <p>Then I came across <strong>Elixir</strong> and its web framework, <strong>Phoenix</strong>. It had all the elegance of Ruby on Rails, with far better performance. It came with <strong><a href="https://github.com/oban-bg/oban" target="_blank" rel="noopener">background jobs through Oban</a></strong>, a familiar and clean syntax, and something truly special called <strong>LiveView</strong>.</p>
 
-      <p>Then I came across <strong>Elixir</strong> and its framework <strong>Phoenix</strong>. It had all the elegance of Ruby on Rails, but with far better performance. It came with <strong><a href="https://github.com/oban-bg/oban" target="_blank">background jobs through Oban</a></strong>, a familiar and clean syntax, and something truly special called <strong>LiveView</strong>.</p>
+    <p>LiveView strikes the perfect balance between traditional server-rendered apps and frontend-heavy frameworks, and to me it&rsquo;s well ahead of both Rails Hotwire and Laravel Livewire. LiveView communicates over WebSockets, so you get real-time, two-way updates without sending a new request every time something changes. You can still use <strong>Alpine.js</strong>, or any JavaScript library you like, through hooks when you need to.</p>
 
-      <p>LiveView feels like the perfect balance between traditional server-rendered apps and frontend-heavy frameworks. It's way ahead of both Rails Hotwire and Laravel Livewire. LiveView communicates through WebSockets, which means real-time two-way updates without sending new requests every time something changes. You can still use <strong>Alpine.js</strong> or any JavaScript library you want through hooks when needed.</p>
+    <p>Phoenix also integrates easily with Oban for background jobs. Jobs are simple to declare, and when one fails, it restarts automatically without bringing down the app. That&rsquo;s the beauty of Elixir. It&rsquo;s a compiled language that runs on the Erlang VM, the same foundation behind highly concurrent systems like WhatsApp and Discord.</p>
 
-      <p>Phoenix also integrates easily with Oban for background jobs. You can declare background jobs easily, and when something fails, it automatically restarts without breaking the app. That's the beauty of Elixir. It's a compiled language built on top of Erlang, which powers highly concurrent systems like WhatsApp and Discord.</p>
+    <h2>What sealed it for me</h2>
+    <ul>
+      <li>I can build fast.</li>
+      <li>I can handle high concurrency if I need to.</li>
+      <li>I write almost everything in one language.</li>
+      <li>I can write clean, readable code.</li>
+      <li>The compiler catches most bugs before they reach production.</li>
+      <li>The app is fault tolerant and rarely goes down.</li>
+    </ul>
 
-      <h2>Here's what sealed it for me:</h2>
-      <ul>
-        <li>I can build fast</li>
-        <li>I can handle high concurrency if needed</li>
-        <li>I write almost everything in one language</li>
-        <li>I can write clean, readable code</li>
-        <li>The compiler catches most bugs before they reach production</li>
-        <li>The app is fault tolerant and rarely goes down</li>
-      </ul>
+    <p>I&rsquo;m not saying Phoenix is better than Laravel, Rails, or Next.js. They&rsquo;re all excellent frameworks, and I&rsquo;ve personally used them to build applications. Phoenix simply turned out to be the best fit for my use case. You can see what I built with it at <a href="https://hyperzoned.com/?ref=akarshc.com" target="_blank" rel="noopener">Hyperzoned.com</a>.</p>
 
-      <p>I'm not saying Phoenix is better than Laravel, Rails, or Next.js. All of these are excellent frameworks, and I've personally used them to build applications. Phoenix just turned out to be the best fit for my specific use case. This is my project - <a href="https://hyperzoned.com/?ref=akarshc.com" target="_blank">Hyperzoned.com</a></p>
+    <p>I don&rsquo;t know who needs to hear this, but try exploring beyond what you already know. You might find a better, more efficient way to solve your next problem. After all, the learning never stops.</p>
 
-      <p>I don't know who needs to hear this, but try exploring beyond what you already know. You might find a better and more efficient way to solve your next problem. After all, never stop learning.</p>
-    </div>
+    <p class="colophon">Thanks for reading. You can find me on <a href="https://x.com/akarshcp" target="_blank" rel="noopener">X/@akarshcp</a>.</p>
+  </main>
 
-    <p style="margin-top: 2em;">
-      Thanks for reading. You can find me on <a href="https://x.com/akarshcp" target="_blank">X/@akarshcp</a>.
-    </p>
-  </div>
-  <script>
-    (function() {
-      var inIframe = window.self !== window.top || window.frameElement !== null;
-      if (inIframe) {
-        var tgl = document.getElementById('dark-mode-toggle');
-        if (tgl) tgl.style.display = 'none';
-      }
-      var wrap = document.getElementById('dark-mode-toggle');
-      var btn = wrap && wrap.querySelector('.retro-switch');
-      if (btn) {
-        function updateSwitch() {
-          btn.classList.toggle('on', document.documentElement.classList.contains('dark-mode'));
-          btn.setAttribute('aria-checked', document.documentElement.classList.contains('dark-mode'));
-        }
-        updateSwitch();
-        btn.addEventListener('click', function() {
-          document.documentElement.classList.toggle('dark-mode');
-          localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
-          updateSwitch();
-        });
-      }
-    })();
-  </script>
+  <hr>
+  <nav class="page-turn" aria-label="Page navigation">
+    <a href="./relearning-programming" class="prev">&laquo; Previous essay</a>
+    <a href="../blog.html" class="next">Writing &raquo;</a>
+  </nav>
+
+  <script src="../assets/script/theme.js"></script>
 </body>
 </html>

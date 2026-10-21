@@ -6,208 +6,87 @@
   <meta name="description" content="About Akarsh Cholapurth - Full-stack Developer and UI/UX Designer with experience since 2010">
   <meta name="keywords" content="Akarsh Cholapurth, full-stack developer, UI/UX designer, web development, portfolio">
   <title>About | Akarsh Cholapurth</title>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    background: #ffffff;
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    margin: 0;
-    padding: 20px;
-    image-rendering: pixelated;
-  }
-  strong {
-    font-weight: normal !important;
-    color: #000000;
-  }
-  h1, h2, h3 {
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-weight: normal;
-    margin-top: 2em;
-    margin-bottom: 0.75em;
-  }
-  h1 {
-    font-size: 26px;
-    margin-top: 0;
-    margin-bottom: 1em;
-  }
-  h2 {
-    font-size: 20px;
-    border-bottom: 2px dashed #000;
-    padding-bottom: 4px;
-    margin-top: 2em;
-  }
-  h3 {
-    font-size: 17px;
-    color: #000000;
-  }
-  a {
-    color: #000000;
-    text-decoration: underline;
-  }
-  a:visited {
-    color: #000000;
-  }
-  a:hover {
-    color: #000000;
-    background: #c0c0c0;
-  }
-  .container {
-    background: #ffffff;
-    padding: 8px;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 768px;
-  }
-  img {
-    border: 2px solid #000000;
-    max-width: 100%;
-    height: auto;
-    margin: 20px 0;
-    image-rendering: pixelated;
-  }
-  p {
-    color: #000000;
-    margin-bottom: 1.5em;
-    text-align: left;
-  }
-  .italic {
-    color: #000000;
-    border-left: 3px solid #000000;
-    padding: 16px 20px;
-    margin: 2em 0;
-    background: #f0f0f0;
-    font-style: italic;
-  }
-  ul, ol {
-    margin-left: 30px;
-    margin-bottom: 1.5em;
-  }
-  li {
-    margin-bottom: 0.75em;
-    color: #000000;
-  }
-  /* Dark mode */
-  html.dark-mode body { background: #1a1a1a; color: #e0e0e0; }
-  html.dark-mode .container { background: #1a1a1a; border-color: #333; }
-  html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, html.dark-mode p, html.dark-mode strong { color: #e0e0e0; }
-  html.dark-mode h2 { border-bottom-color: #444; }
-  html.dark-mode a { color: #8ab4f8; }
-  html.dark-mode a:visited { color: #8ab4f8; }
-  html.dark-mode a:hover { background: #333; color: #e0e0e0; }
-  html.dark-mode img { border-color: #444; }
-  html.dark-mode .italic { background: #252525; border-left-color: #444; color: #e0e0e0; }
-  html.dark-mode li { color: #e0e0e0; }
-  html.dark-mode #home-breadcrumb { color: #8ab4f8 !important; }
-  #dark-mode-toggle {
-    position: relative; width: 100%;
-    display: flex; justify-content: flex-end; align-items: center; gap: 8px;
-    padding: 16px 16px 0 0; box-sizing: border-box;
-    font-size: 13px; font-family: inherit; color: #000;
-  }
-  html.dark-mode #dark-mode-toggle { color: #e0e0e0; }
-  #dark-mode-toggle .retro-switch {
-    display: inline-flex; align-items: center;
-    width: 40px; height: 20px; padding: 2px;
-    border: 2px solid #000; background: #fff; cursor: pointer; box-sizing: border-box;
-  }
-  html.dark-mode #dark-mode-toggle .retro-switch { border-color: #555; background: #333; }
-  #dark-mode-toggle .retro-switch .retro-switch-knob {
-    width: 14px; height: 14px; background: #000; flex-shrink: 0; transition: transform 0.15s ease;
-  }
-  #dark-mode-toggle .retro-switch.on .retro-switch-knob { transform: translateX(22px); }
-  html.dark-mode #dark-mode-toggle .retro-switch .retro-switch-knob { background: #e0e0e0; }
-  html.dark-mode #dark-mode-toggle .retro-switch.on { background: #1a1a1a; }
-  </style>
-<script>
-  (function() { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); })();
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L8F5V2WRJX');
-</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/css/site.css">
+  <script>
+    (function() { try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); } catch (e) {} })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8F5V2WRJX');
+  </script>
 </head>
 <body>
-  <div id="dark-mode-toggle">
-    <span class="dark-mode-label">Dark mode:</span>
-    <button type="button" class="retro-switch" role="switch" aria-label="Toggle dark mode">
-      <span class="retro-switch-knob"></span>
-    </button>
-  </div>
-  <div class="container">
-    <a href="./" id="home-breadcrumb" style="color: #000000; font-size: 13px; text-decoration: underline; display: inline-block; margin-bottom: 12px;">Home</a>
-    <h1>Akarsh Cholapurth</h1>
-    <img src="./assets/images/akarsh-pic.jpeg" style="width: 200px;" />
-    <p>I'm a maker with experience in web development since 2010, along with UI/UX design, research, full-stack development, and DevOps. I'm currently building <a href="https://modelriver.com" target="_blank">ModelRiver</a>, a developer platform focused on making production-grade AI workflows reliable, observable, and easy to reason about. Also I built <a href="https://hyperzoned.com" target="_blank">Hyperzoned</a>, an AI-powered, minimal project management app based on the "3 tasks a day" method.</p>
-    
+  <header class="site-nav">
+    <nav aria-label="Site">
+      <a href="./">Home</a> |
+      <strong aria-current="page">About</strong> |
+      <a href="./work">Work</a> |
+      <a href="./projects">Projects</a> |
+      <a href="./blog.html">Writing</a> |
+      <a href="./contact">Contact</a> |
+      <button type="button" class="theme-toggle">Dark mode</button>
+    </nav>
+  </header>
+  <hr>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="./">Home</a></li>
+        <li aria-current="page">About</li>
+      </ol>
+    </nav>
+
+    <h1>About</h1>
+    <figure class="plate">
+      <img src="./assets/images/akarsh-pic.jpeg" alt="Portrait of Akarsh Cholapurth" width="1179" height="1326">
+    </figure>
+
+    <p class="lede">I&rsquo;ve been making things for the web since 2010. Along the way that work has grown to include UI/UX design, research, full-stack development, and DevOps. These days I&rsquo;m building <a href="https://modelriver.com" target="_blank" rel="noopener">ModelRiver</a>, a developer platform that makes production AI workflows reliable, observable, and easy to reason about. I also built <a href="https://hyperzoned.com" target="_blank" rel="noopener">Hyperzoned</a>, a minimal, AI-powered project manager built around one simple rule: three tasks a day.</p>
+
     <h2>What is ModelRiver?</h2>
-    <p>
-      After working with multiple AI models in production, one pattern kept repeating. Integrations became fragile as soon as workflows went async. Each provider came with its own SDKs, auth mechanisms, response formats, and failure modes. Handling retries, observability, testing, and real-time updates quickly turned into custom glue code scattered across the codebase.
-    </p>
-
-    <p>
-      ModelRiver is an attempt to bring order to that chaos. It provides a single, consistent layer for running AI workflows with proper async execution, retries, observability, and local-first development, so developers can experiment safely and ship production-grade AI systems with confidence.
-    </p>
-
+    <p>After running several AI models in production, I kept seeing the same pattern. Integrations held up until a workflow went asynchronous, and then they turned fragile. Every provider brought its own SDK, authentication, response format, and ways of failing. Retries, observability, testing, and real-time updates all ended up as custom glue code scattered through the codebase.</p>
+    <p>ModelRiver is my attempt to bring order to that. It gives you one consistent layer for running AI workflows, with proper async execution, retries, observability, and local-first development, so you can experiment safely and ship production-grade AI with confidence.</p>
 
     <h2>What is Hyperzoned?</h2>
-    <p>When I want to start a task, should I really have to open a kanban board, check what's pending, break it into atomic subtasks, and then begin? That feels like too many steps.<br><br>
-    In Hyperzoned, you can <strong>create a project</strong>, then define goals (weekly or monthly) and add milestones within those goals. That's it. It's a one-time setup, similar to creating a new task in a kanban board (but much less often).<br><br>
-    Each morning, you can click <strong>"New Task"</strong>, select the goal and milestone you want to work on (your previous one is auto-selected if you're continuing), and Hyperzoned's AI will generate a focused task by breaking it into small, actionable steps. you can create up to three meaningful tasks per day across different projects, goals, or milestones, helping you stay focused without overwhelm.</p>
-    
-    <h2>Previous projects</h2>
-    <p>I have worked on several projects before Hyperzoned. Notable ones are:<br><br>
-    <strong>Vieww.me</strong> — a web app that helps users create a single-page web portfolio with minimal information in under 3 minutes. The app was featured on <a target="_blank" href="https://www.producthunt.com/products/vieww">Product Hunt</a> and gained good traction in the market but was eventually shut down due to the lack of a sustainable business model.</p>
-    <p><strong>StickWithSEO.com</strong> — a website that analyzed any webpage's SEO performance using a custom-defined search engine algorithm back in 2016–17. Prior to that, I created several blogs, WordPress plugins, and themes.</p>
-    
-    <h3>How did I end up in development?</h3>
-    <p>My passion for creating things online started early. Back in the 2010s, I loved experimenting with free website builders like Blogspot, WordPress, and Google Sites, even using free <strong>.tk</strong> domains to publish small projects. To make my Blogspot themes look more unique and professional, I began learning <strong>HTML</strong> and <strong>CSS</strong>. What started as simple theme tweaks soon turned into a genuine interest in web design and development.</p>
-    <p>Eventually, I registered my first domain and hosted a WordPress site on HostGator using FTP and FileZilla. Working with WordPress introduced me to <strong>PHP</strong>, which felt confusing at first without any prior programming experience. Still, I managed to make small edits and customizations, and even designed graphics and logos for my websites.</p>
-    <p>Around the same time, I was pursuing my higher studies and had just a basic understanding of <strong>C++</strong> from school. I monetized my blog through <strong>Google AdSense</strong> and still remember receiving my <a href="./assets/images/first-cheque.jpg" target="_blank">first revenue cheque from Google</a>. Back then, I posted tech blogs daily, optimizing them with SEO and keyword strategies and surprisingly, it worked quite well!</p>
-    <p>During my second year of college, things slowed down, and I had to pause blogging for a while. A year later, I discovered something fascinating: people were building incredible web applications known as <strong>Single Page Applications (SPAs)</strong>. Curious, I took my first <strong>React course</strong> by <a href="https://zerotomastery.io/" target="_blank">Andrei Neagoie's Zero to mastery</a>. I didn't code along at first, just watched. But for my final year project, I built <strong>StickWithSEO.com</strong> — a PHP-based web app that analyzed website SEO using basic scraping and algorithms. That was my first full programming project, and it made me realize how much I truly loved building software.</p>
-    <p>After that, I revisited the React course, this time coding alongside it. I quickly picked up <strong>React</strong>, <strong>Node.js (Express.js)</strong>, <strong>Git</strong>, and <strong>PostgreSQL</strong>. Soon after, a friend and I started building a new web app — <strong>Vieww.me</strong>. That project taught me more than any course could: from frontend optimization to server deployment.</p>
-    <p class="italic">"I started coding to solve my own problems, and I never stopped learning."</p>
+    <p>Should starting a task really mean opening a kanban board, checking what&rsquo;s pending, and breaking the work into atomic subtasks before you begin? That always felt like too many steps.</p>
+    <p>In Hyperzoned, you <strong>create a project</strong>, set weekly or monthly goals, and add milestones within them. That&rsquo;s the whole setup. It takes about as much effort as adding a card to a kanban board, and you do it far less often.</p>
+    <p>Each morning you click <strong>New Task</strong> and pick the goal and milestone you want to work on. If you&rsquo;re picking up where you left off, your last choice is already selected. Hyperzoned&rsquo;s AI then turns it into a focused task, broken into small, actionable steps. You can create up to three meaningful tasks a day across your projects, goals, and milestones: enough to make real progress, never enough to feel overwhelmed.</p>
 
-    <h2>A bit about me</h2>
-    <p>I would describe myself as a true "Jack of all trades, master of none", and I think that's perfectly fine. Over time, I've learned to embrace this as a strength because it allows me to explore and do many things instead of just one. I've realized that with enough effort and focus, I can create meaningful and impactful work, and that's exactly what I'm doing now.</p>
-    <p>Outside of work, I enjoy watching movies, photography (<a href="./assets/images/old-photograph.jpg" target="_blank">10+ years old photograph</a>), following football, and keeping up with the latest in technology, including programming, new gadgets, innovative concepts, AI, UI/UX, and apps.</p>
-  </div>
-  <script>
-    (function() {
-      var inIframe = window.self !== window.top || window.frameElement !== null;
-      if (inIframe) {
-        var bc = document.getElementById('home-breadcrumb');
-        if (bc) bc.style.display = 'none';
-        var tgl = document.getElementById('dark-mode-toggle');
-        if (tgl) tgl.style.display = 'none';
-      }
-      var wrap = document.getElementById('dark-mode-toggle');
-      var btn = wrap && wrap.querySelector('.retro-switch');
-      if (btn) {
-        function updateSwitch() {
-          btn.classList.toggle('on', document.documentElement.classList.contains('dark-mode'));
-          btn.setAttribute('aria-checked', document.documentElement.classList.contains('dark-mode'));
-        }
-        updateSwitch();
-        btn.addEventListener('click', function() {
-          document.documentElement.classList.toggle('dark-mode');
-          localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
-          updateSwitch();
-        });
-      }
-    })();
-  </script>
+    <h2>Earlier projects</h2>
+    <p>Hyperzoned wasn&rsquo;t my first product. Two of the earlier ones stand out.</p>
+    <p><span class="entry-name">Vieww.me</span> let anyone build a single-page portfolio from a handful of details in under three minutes. It was featured on <a href="https://www.producthunt.com/products/vieww" target="_blank" rel="noopener">Product Hunt</a> and found real traction, but it was eventually shut down for lack of a sustainable business model.</p>
+    <p><span class="entry-name">StickWithSEO.com</span> analyzed the SEO performance of any webpage using a custom search-engine algorithm, back in 2016&ndash;17. Before that, I made a number of blogs, WordPress plugins, and themes.</p>
+
+    <h2>How I ended up in development</h2>
+    <p>It started early. In the early 2010s I loved experimenting with free website builders like Blogspot, WordPress, and Google Sites, and I published small projects on free <strong>.tk</strong> domains. I wanted my Blogspot themes to look more distinctive and professional, so I began learning <strong>HTML</strong> and <strong>CSS</strong>. What started as small theme tweaks soon became a real interest in web design and development.</p>
+    <p>Eventually I registered my first domain and hosted a WordPress site on HostGator, uploading files over FTP with FileZilla. WordPress introduced me to <strong>PHP</strong>, which was baffling at first with no programming background. Still, I managed small edits and customizations, and designed the graphics and logos for my sites myself.</p>
+    <p>Around the same time I was starting my higher studies, with only a basic grasp of <strong>C++</strong> from school. I monetized my blog through <strong>Google AdSense</strong>, and I still remember receiving my <a href="./assets/images/first-cheque.jpg" target="_blank" rel="noopener">first revenue cheque from Google</a>. I posted tech articles every day, optimizing each one for search and keywords, and to my surprise it worked rather well.</p>
+    <p>In my second year of college things slowed down, and I put blogging on hold. A year later I discovered something fascinating: people were building remarkable web apps called <strong>Single Page Applications</strong> (SPAs). Curious, I took my first <strong>React</strong> course, <a href="https://zerotomastery.io/" target="_blank" rel="noopener">Andrei Neagoie&rsquo;s Zero to Mastery</a>. At first I only watched, without coding along. But for my final-year project I built <strong>StickWithSEO.com</strong>, a PHP web app that analyzed a site&rsquo;s SEO with basic scraping and algorithms. It was my first complete programming project, and it showed me how much I loved building software.</p>
+    <p>After that I went back to the React course, and this time I coded along. I picked up <strong>React</strong>, <strong>Node.js</strong> (Express), <strong>Git</strong>, and <strong>PostgreSQL</strong> quickly. Soon after, a friend and I started building a new web app, <strong>Vieww.me</strong>. That project taught me more than any course could, from frontend optimization to server deployment.</p>
+
+    <blockquote class="epigraph">
+      <p>&ldquo;I started coding to solve my own problems, and I never stopped learning.&rdquo;</p>
+    </blockquote>
+
+    <h2>A little more about me</h2>
+    <p>I&rsquo;d call myself a jack of all trades and master of none, and I&rsquo;m at peace with that. Over time I&rsquo;ve come to see it as a strength, because it lets me explore many things instead of just one. With enough effort and focus, I can still make work that is meaningful and has real impact, and that&rsquo;s what I&rsquo;m doing now.</p>
+    <p>Outside of work, I enjoy films, photography (<a href="./assets/images/old-photograph.jpg" target="_blank" rel="noopener">here&rsquo;s one from more than a decade ago</a>), and football. I also like keeping up with technology: programming, new gadgets, new ideas, AI, UI/UX design, and apps.</p>
+  </main>
+
+  <hr>
+  <nav class="page-turn" aria-label="Page navigation">
+    <a href="./" class="prev">&laquo; Contents</a>
+    <a href="./work" class="next">Work &raquo;</a>
+  </nav>
+
+  <script src="./assets/script/theme.js"></script>
 </body>
 </html>
