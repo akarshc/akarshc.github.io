@@ -1,183 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Blog by Akarsh Cholapurth">
   <title>Blog | Akarsh Cholapurth</title>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    background: #ffffff;
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    margin: 0;
-    padding: 20px;
-    image-rendering: pixelated;
-  }
-  h1 {
-    font-size: 26px;
-    color: #000000;
-    margin-top: 0;
-    margin-bottom: 1em;
-    font-weight: normal;
-  }
-  a {
-    color: #000000;
-    text-decoration: underline;
-    font-size: 16px;
-  }
-  a:visited {
-    color: #000000;
-  }
-  a:hover {
-    color: #000000;
-    background: #c0c0c0;
-  }
-  .container {
-    background: #ffffff;
-    padding: 8px;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 768px;
-  }
-  p {
-    color: #000000;
-    margin-bottom: 1.5em;
-    text-align: left;
-  }
-  .post-item {
-    margin-bottom: 30px;
-  }
-  .post-item .post-title-wrap {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .post-item .open-new-tab {
-    font-size: 12px;
-    color: #666666;
-    text-decoration: underline;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-  }
-  .post-item:hover .open-new-tab {
-    opacity: 1;
-  }
-  .post-item .open-new-tab:hover {
-    background: #c0c0c0;
-    color: #000000;
-  }
-  /* Dark mode */
-  html.dark-mode body { background: #1a1a1a; color: #e0e0e0; }
-  html.dark-mode .container { background: #1a1a1a; border-color: #333; }
-  html.dark-mode h1, html.dark-mode h2, html.dark-mode p { color: #e0e0e0 !important; }
-  html.dark-mode a { color: #8ab4f8 !important; }
-  html.dark-mode a:visited { color: #8ab4f8 !important; }
-  html.dark-mode a:hover { background: #333 !important; color: #e0e0e0 !important; }
-  html.dark-mode .post-item .open-new-tab { color: #aaa !important; }
-  html.dark-mode .post-item .open-new-tab:hover { background: #333 !important; color: #e0e0e0 !important; }
-  html.dark-mode #home-breadcrumb { color: #8ab4f8 !important; }
-  #dark-mode-toggle {
-    position: relative; width: 100%;
-    display: flex; justify-content: flex-end; align-items: center; gap: 8px;
-    padding: 16px 16px 0 0; box-sizing: border-box;
-    font-size: 13px; font-family: inherit; color: #000;
-  }
-  html.dark-mode #dark-mode-toggle { color: #e0e0e0; }
-  #dark-mode-toggle .retro-switch {
-    display: inline-flex; align-items: center;
-    width: 40px; height: 20px; padding: 2px;
-    border: 2px solid #000; background: #fff; cursor: pointer; box-sizing: border-box;
-  }
-  html.dark-mode #dark-mode-toggle .retro-switch { border-color: #555; background: #333; }
-  #dark-mode-toggle .retro-switch .retro-switch-knob {
-    width: 14px; height: 14px; background: #000; flex-shrink: 0; transition: transform 0.15s ease;
-  }
-  #dark-mode-toggle .retro-switch.on .retro-switch-knob { transform: translateX(22px); }
-  html.dark-mode #dark-mode-toggle .retro-switch .retro-switch-knob { background: #e0e0e0; }
-  html.dark-mode #dark-mode-toggle .retro-switch.on { background: #1a1a1a; }
-  </style>
-<script>
-  (function() { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); })();
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L8F5V2WRJX');
-</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/css/site.css">
+  <script>
+    (function() { try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); } catch (e) {} })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8F5V2WRJX');
+  </script>
 </head>
 <body>
-  <div id="dark-mode-toggle">
-    <span class="dark-mode-label">Dark mode:</span>
-    <button type="button" class="retro-switch" role="switch" aria-label="Toggle dark mode">
-      <span class="retro-switch-knob"></span>
-    </button>
-  </div>
-  <div class="container">
-    <a href="./" id="home-breadcrumb" style="color: #000000; font-size: 13px; text-decoration: underline; display: inline-block; margin-bottom: 12px;">Home</a>
-    <h1>Blog</h1>
-    <p>Personal thoughts, product updates, and lessons learned.</p>
-    <div style="margin-top: 30px;">
-      <div class="post-item">
-        <div class="post-title-wrap">
-          <a href="./post/ai-in-production" class="post-title" style="font-weight: normal; color: #000000; font-size: 17px;">What breaks when you ship AI in production</a>
-          <a href="./post/ai-in-production" target="_blank" rel="noopener noreferrer" class="open-new-tab">Open in new tab</a>
-        </div>
-        <p style="color: #000000; font-size: 14px; margin-top: 4px;">January 28, 2026</p>
-      </div>
-      <div class="post-item">
-        <div class="post-title-wrap">
-          <a href="./post/relearning-programming" class="post-title" style="font-weight: normal; color: #000000; font-size: 17px;">Relearning Programming: My Process in the Modern Tech World</a>
-          <a href="./post/relearning-programming" target="_blank" rel="noopener noreferrer" class="open-new-tab">Open in new tab</a>
-        </div>
-        <p style="color: #000000; font-size: 14px; margin-top: 4px;">October 23, 2025</p>
-      </div>
-      <div class="post-item">
-        <div class="post-title-wrap">
-          <a href="./post/phoenix-for-my-project" class="post-title" style="font-weight: normal; color: #000000; font-size: 17px;">Why I chose Phoenix LiveView over Rails, Laravel, and Next.js</a>
-          <a href="./post/phoenix-for-my-project" target="_blank" rel="noopener noreferrer" class="open-new-tab">Open in new tab</a>
-        </div>
-        <p style="color: #000000; font-size: 14px; margin-top: 4px;">October 16, 2025</p>
-      </div>
-    </div>
-  </div>
-  <script>
-    (function() {
-      var inIframe = window.self !== window.top || window.frameElement !== null;
-      if (inIframe) {
-        var bc = document.getElementById('home-breadcrumb');
-        if (bc) bc.style.display = 'none';
-        var tgl = document.getElementById('dark-mode-toggle');
-        if (tgl) tgl.style.display = 'none';
-      }
-      var wrap = document.getElementById('dark-mode-toggle');
-      var btn = wrap && wrap.querySelector('.retro-switch');
-      if (btn) {
-        function updateSwitch() {
-          btn.classList.toggle('on', document.documentElement.classList.contains('dark-mode'));
-          btn.setAttribute('aria-checked', document.documentElement.classList.contains('dark-mode'));
-        }
-        updateSwitch();
-        btn.addEventListener('click', function() {
-          document.documentElement.classList.toggle('dark-mode');
-          localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
-          updateSwitch();
-        });
-      }
-    })();
-  </script>
+  <header class="site-nav">
+    <nav aria-label="Site">
+      <a href="./">Home</a> |
+      <a href="./about">About</a> |
+      <a href="./work">Work</a> |
+      <a href="./projects">Projects</a> |
+      <strong aria-current="page">Writing</strong> |
+      <a href="./contact">Contact</a> |
+      <button type="button" class="theme-toggle">Dark mode</button>
+    </nav>
+  </header>
+  <hr>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="./">Home</a></li>
+        <li aria-current="page">Writing</li>
+      </ol>
+    </nav>
+
+    <h1>Writing</h1>
+    <p class="lede">Personal thoughts, notes from building products, and lessons learned along the way.</p>
+
+    <h2>Essays</h2>
+    <ol class="essays">
+      <li>
+        <a href="./post/ai-in-production">What breaks when you ship AI in production</a>
+        <span class="essay-date">January 28, 2026</span>
+      </li>
+      <li>
+        <a href="./post/relearning-programming">Relearning Programming: My Process in the Modern Tech World</a>
+        <span class="essay-date">October 23, 2025</span>
+      </li>
+      <li>
+        <a href="./post/phoenix-for-my-project">Why I chose Phoenix LiveView over Rails, Laravel, and Next.js</a>
+        <span class="essay-date">October 16, 2025</span>
+      </li>
+    </ol>
+  </main>
+
+  <hr>
+  <nav class="page-turn" aria-label="Page navigation">
+    <a href="./projects" class="prev">&laquo; Projects</a>
+    <a href="./contact" class="next">Contact &raquo;</a>
+  </nav>
+
+  <script src="./assets/script/theme.js"></script>
 </body>
 </html>

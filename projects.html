@@ -6,151 +6,70 @@
   <meta name="description" content="Projects by Akarsh Cholapurth - ModelRiver, Hyperzoned, Vieww.me, and more">
   <meta name="keywords" content="Akarsh Cholapurth, projects, ModelRiver, Hyperzoned, web development projects">
   <title>Projects | Akarsh Cholapurth</title>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    background: #ffffff;
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    margin: 0;
-    padding: 20px;
-    image-rendering: pixelated;
-  }
-  h1, h2 {
-    color: #000000;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-weight: normal;
-    margin-top: 2em;
-    margin-bottom: 0.75em;
-  }
-  h1 {
-    font-size: 26px;
-    margin-top: 0;
-    margin-bottom: 1em;
-  }
-  h2 {
-    font-size: 20px;
-    border-bottom: 2px dashed #000;
-    padding-bottom: 4px;
-    margin-top: 2em;
-  }
-  a {
-    color: #000000;
-    text-decoration: underline;
-  }
-  a:visited {
-    color: #000000;
-  }
-  a:hover {
-    color: #000000;
-    background: #c0c0c0;
-  }
-  .container {
-    background: #ffffff;
-    padding: 8px;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 768px;
-  }
-  p {
-    color: #000000;
-    margin-bottom: 1.5em;
-    text-align: left;
-  }
-  strong {
-    font-weight: normal;
-    color: #000000;
-  }
-  /* Dark mode */
-  html.dark-mode body { background: #1a1a1a; color: #e0e0e0; }
-  html.dark-mode .container { background: #1a1a1a; border-color: #333; }
-  html.dark-mode h1, html.dark-mode h2, html.dark-mode p, html.dark-mode strong { color: #e0e0e0; }
-  html.dark-mode h2 { border-bottom-color: #444; }
-  html.dark-mode a { color: #8ab4f8; }
-  html.dark-mode a:visited { color: #8ab4f8; }
-  html.dark-mode a:hover { background: #333; color: #e0e0e0; }
-  html.dark-mode #home-breadcrumb { color: #8ab4f8 !important; }
-  #dark-mode-toggle {
-    position: relative; width: 100%;
-    display: flex; justify-content: flex-end; align-items: center; gap: 8px;
-    padding: 16px 16px 0 0; box-sizing: border-box;
-    font-size: 13px; font-family: inherit; color: #000;
-  }
-  html.dark-mode #dark-mode-toggle { color: #e0e0e0; }
-  #dark-mode-toggle .retro-switch {
-    display: inline-flex; align-items: center;
-    width: 40px; height: 20px; padding: 2px;
-    border: 2px solid #000; background: #fff; cursor: pointer; box-sizing: border-box;
-  }
-  html.dark-mode #dark-mode-toggle .retro-switch { border-color: #555; background: #333; }
-  #dark-mode-toggle .retro-switch .retro-switch-knob {
-    width: 14px; height: 14px; background: #000; flex-shrink: 0; transition: transform 0.15s ease;
-  }
-  #dark-mode-toggle .retro-switch.on .retro-switch-knob { transform: translateX(22px); }
-  html.dark-mode #dark-mode-toggle .retro-switch .retro-switch-knob { background: #e0e0e0; }
-  html.dark-mode #dark-mode-toggle .retro-switch.on { background: #1a1a1a; }
-  </style>
-<script>
-  (function() { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); })();
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L8F5V2WRJX');
-</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/css/site.css">
+  <script>
+    (function() { try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode'); } catch (e) {} })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8F5V2WRJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8F5V2WRJX');
+  </script>
 </head>
 <body>
-  <div id="dark-mode-toggle">
-    <span class="dark-mode-label">Dark mode:</span>
-    <button type="button" class="retro-switch" role="switch" aria-label="Toggle dark mode">
-      <span class="retro-switch-knob"></span>
-    </button>
-  </div>
-  <div class="container">
-    <a href="./" id="home-breadcrumb" style="color: #000000; font-size: 13px; text-decoration: underline; display: inline-block; margin-bottom: 12px;">Home</a>
+  <header class="site-nav">
+    <nav aria-label="Site">
+      <a href="./">Home</a> |
+      <a href="./about">About</a> |
+      <a href="./work">Work</a> |
+      <strong aria-current="page">Projects</strong> |
+      <a href="./blog.html">Writing</a> |
+      <a href="./contact">Contact</a> |
+      <button type="button" class="theme-toggle">Dark mode</button>
+    </nav>
+  </header>
+  <hr>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="./">Home</a></li>
+        <li aria-current="page">Projects</li>
+      </ol>
+    </nav>
+
     <h1>Projects</h1>
-    <h2>Current Projects</h2>
-    <p><strong>ModelRiver</strong> - A developer platform that simplifies connecting and experimenting with AI models. <a href="https://modelriver.com" target="_blank">Visit ModelRiver</a></p>
-    <p><strong>Hyperzoned</strong> - An AI-powered, minimal project management app based on the "3 tasks a day" method. <a href="https://hyperzoned.com" target="_blank">Visit Hyperzoned</a></p>
-    
-    <h2>Previous Projects</h2>
-    <p><strong>Vieww.me</strong> — a web app that helps users create a single-page web portfolio with minimal information in under 3 minutes. The app was featured on <a target="_blank" href="https://www.producthunt.com/products/vieww">Product Hunt</a> and gained good traction in the market but was eventually shut down due to the lack of a sustainable business model.</p>
-    <p><strong>StickWithSEO.com</strong> — a website that analyzed any webpage's SEO performance using a custom-defined search engine algorithm back in 2016–17.</p>
-  </div>
-  <script>
-    (function() {
-      var inIframe = window.self !== window.top || window.frameElement !== null;
-      if (inIframe) {
-        var bc = document.getElementById('home-breadcrumb');
-        if (bc) bc.style.display = 'none';
-        var tgl = document.getElementById('dark-mode-toggle');
-        if (tgl) tgl.style.display = 'none';
-      }
-      var wrap = document.getElementById('dark-mode-toggle');
-      var btn = wrap && wrap.querySelector('.retro-switch');
-      if (btn) {
-        function updateSwitch() {
-          btn.classList.toggle('on', document.documentElement.classList.contains('dark-mode'));
-          btn.setAttribute('aria-checked', document.documentElement.classList.contains('dark-mode'));
-        }
-        updateSwitch();
-        btn.addEventListener('click', function() {
-          document.documentElement.classList.toggle('dark-mode');
-          localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
-          updateSwitch();
-        });
-      }
-    })();
-  </script>
+    <p class="lede">These are the things I&rsquo;ve built on my own: the ones I&rsquo;m working on now, and the ones that taught me how.</p>
+
+    <h2>Current projects</h2>
+    <div class="entry">
+      <p><span class="entry-name">ModelRiver</span> is a developer platform that makes it simple to connect to and experiment with AI models. <a href="https://modelriver.com" target="_blank" rel="noopener">Visit ModelRiver</a></p>
+    </div>
+    <div class="entry">
+      <p><span class="entry-name">Hyperzoned</span> is a minimal, AI-powered project manager built around the &ldquo;three tasks a day&rdquo; method. <a href="https://hyperzoned.com" target="_blank" rel="noopener">Visit Hyperzoned</a></p>
+    </div>
+
+    <h2>Earlier projects</h2>
+    <div class="entry">
+      <p><span class="entry-name">Vieww.me</span> let anyone build a single-page portfolio from a handful of details in under three minutes. It was featured on <a href="https://www.producthunt.com/products/vieww" target="_blank" rel="noopener">Product Hunt</a> and found real traction, but it was eventually shut down for lack of a sustainable business model.</p>
+    </div>
+    <div class="entry">
+      <p><span class="entry-name">StickWithSEO.com</span> analyzed the SEO performance of any webpage using a custom search-engine algorithm, back in 2016&ndash;17.</p>
+    </div>
+  </main>
+
+  <hr>
+  <nav class="page-turn" aria-label="Page navigation">
+    <a href="./work" class="prev">&laquo; Work</a>
+    <a href="./blog.html" class="next">Writing &raquo;</a>
+  </nav>
+
+  <script src="./assets/script/theme.js"></script>
 </body>
 </html>
