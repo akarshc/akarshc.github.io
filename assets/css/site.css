@@ -1,38 +1,39 @@
-/* Old-web theme: Source Sans + EB Garamond, blue links, plain rules, a few soft colours. Shared by every page. */
+/* Old-web theme: Source Serif body, Inter bold headings, Source Sans nav, monochrome links, plain rules, a few soft colours. Shared by every page. */
 
 :root {
-  --bg: #ffffff;
-  --text: #000000;
-  --muted: #555555;
-  --link: #0000ee;
-  --code-bg: #fafafa;
-  --code-border: #ececec;
+  --bg: #f6f0e2;
+  --text: #1f1b16;
+  --muted: #5e5648;
+  --link: #1f1b16;
+  --code-bg: #efe8d7;
+  --code-border: #e0d7c1;
   --code-text: #1a1a1a;
   --code-comment: #6e6e6e;
   --border: #999999;
-  --nav-bg: #eef3fb;
-  --nav-border: #c9d6ec;
-  --highlight: #fff1a8;
+  --nav-bg: #ede6d4;
+  --nav-border: #d9cfb8;
+  --highlight: #e6dbbd;
 
-  --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
-  --serif: 'EB Garamond', Georgia, 'Times New Roman', Times, serif; /* titles and headings */
+  --sans: 'Source Sans 3', Helvetica, Arial, sans-serif; /* nav and small UI text */
+  --text-serif: 'Source Serif 4', Charter, 'Iowan Old Style', Georgia, serif; /* body text */
+  --heading: 'Inter', 'Source Sans 3', Helvetica, Arial, sans-serif; /* titles and headings */
   --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 html.dark-mode {
   color-scheme: dark;
-  --bg: #111111;
-  --text: #e6e6e6;
-  --muted: #aaaaaa;
-  --link: #8ab4ff;
-  --code-bg: #1a1a1a;
-  --code-border: #2a2a2a;
-  --code-text: #e6e6e6;
-  --code-comment: #9a9a9a;
-  --border: #666666;
-  --nav-bg: #18202e;
-  --nav-border: #2c3a52;
-  --highlight: #4d4417;
+  --bg: #1e1c19;
+  --text: #e6e0d2;
+  --muted: #a8a190;
+  --link: #efe9dc;
+  --code-bg: #26231f;
+  --code-border: #35312b;
+  --code-text: #e6e0d2;
+  --code-comment: #9a9384;
+  --border: #6b665b;
+  --nav-bg: #26231f;
+  --nav-border: #38342d;
+  --highlight: #4a4535;
 }
 
 html {
@@ -45,72 +46,103 @@ html {
 
 body {
   max-width: 38rem;
-  margin: 0;
+  margin: 0 auto;
   padding: 12px 24px 32px;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
-  font-size: 15px;
+  font-family: var(--text-serif);
+  font-size: 17px;
   line-height: 1.6;
   overflow-wrap: break-word;
 }
 
-/* Top navigation bar */
+/* Top navigation bar: plain links on a rule, the "|" separators are hidden */
 
 .site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px 16px;
-  padding: 4px 10px;
-  background: var(--nav-bg);
-  border: 1px solid var(--nav-border);
+  margin-bottom: 0;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--nav-border);
   font-family: var(--sans);
-  font-size: 13px;
 }
 
 .site-nav nav {
-  line-height: 1.8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+  font-size: 0; /* hides the text-node separators */
 }
 
-.site-nav strong {
+.site-nav nav a,
+.theme-toggle {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.site-nav nav a,
+.site-nav nav a:visited {
+  color: var(--muted);
+}
+
+.site-nav nav a:hover,
+.theme-toggle:hover {
+  background: none;
+  color: var(--link);
+}
+
+/* The current page is the one bold, dark label */
+
+.site-nav nav strong {
+  padding: 4px 10px;
+  color: var(--text);
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1.4;
 }
 
-/* The dark mode toggle is a button dressed as a nav link */
+.site-nav nav > :first-child {
+  margin-left: -10px; /* align the first label with the page text */
+}
+
+/* The dark mode toggle is a button dressed as a nav link, pushed to the right */
 
 .theme-toggle {
   appearance: none;
-  padding: 0;
+  margin-left: auto;
   border: 0;
   background: none;
-  color: var(--link);
-  font: inherit;
-  text-decoration: underline;
+  color: var(--muted);
+  font-weight: 400;
   cursor: pointer;
 }
 
-hr {
-  margin: 12px 0 16px;
-}
-
-/* Links: one colour in every state (no visited or active colour) */
-
-a,
-a:visited,
-a:hover,
-a:active {
-  color: var(--link);
+.site-nav + hr {
+  display: none;
 }
 
 /* Breadcrumbs */
 
 .breadcrumbs {
-  margin: 0 0 8px;
+  margin: 14px 0 4px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
+}
+
+.breadcrumbs a,
+.breadcrumbs a:visited {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--link);
+  text-decoration: underline;
 }
 
 .breadcrumbs ol {
@@ -126,8 +158,22 @@ a:active {
 }
 
 .breadcrumbs li + li::before {
-  content: '>';
-  margin: 0 0.45em;
+  content: '/';
+  margin: 0 0.5em;
+  opacity: 0.5;
+}
+
+hr {
+  margin: 12px 0 16px;
+}
+
+/* Links: one colour in every state (no visited or active colour) */
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: var(--link);
 }
 
 /* Headings */
@@ -135,30 +181,31 @@ a:active {
 h1,
 h2,
 h3 {
-  font-family: var(--serif);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.005em;
+  font-family: var(--heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--text);
 }
 
 h1 {
   margin: 0.35em 0 0.3em;
-  font-size: 2.6em;
+  font-size: 2.1em;
 }
 
 h2 {
   margin: 1.5em 0 0.35em;
-  font-size: 1.7em;
+  font-size: 1.45em;
 }
 
 h3 {
   margin: 1.4em 0 0.3em;
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 
 .meta {
   margin: 0 0 1em;
+  font-size: 0.85em;
   color: var(--muted);
   font-style: italic;
 }
@@ -233,7 +280,6 @@ pre .comment {
   width: 200px;
   max-width: 100%;
   height: auto;
-  border: 1px solid var(--text);
 }
 
 /* Lists of pages and essays */
@@ -277,11 +323,11 @@ pre .comment {
 @media (max-width: 480px) {
   body {
     padding: 8px 16px 24px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   h1 {
-    font-size: 2.2em;
+    font-size: 1.8em;
   }
 }
 
