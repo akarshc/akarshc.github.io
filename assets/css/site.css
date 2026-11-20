@@ -70,6 +70,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 2px 4px;
+  margin: 0 -10px; /* pull every row out so each row's first label aligns with the page text */
   font-size: 0; /* hides the text-node separators */
 }
 
@@ -105,10 +106,6 @@ body {
   line-height: 1.4;
 }
 
-.site-nav nav > :first-child {
-  margin-left: -10px; /* align the first label with the page text */
-}
-
 /* The dark mode toggle is a button dressed as a nav link, pushed to the right */
 
 .theme-toggle {
@@ -119,6 +116,13 @@ body {
   color: var(--muted);
   font-weight: 400;
   cursor: pointer;
+}
+
+.theme-toggle svg {
+  display: none;
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
 }
 
 .site-nav + hr {
@@ -328,6 +332,27 @@ pre .comment {
 
   h1 {
     font-size: 1.8em;
+  }
+
+  /* Tighter nav so all links and the toggle fit on one line */
+  .site-nav nav {
+    gap: 2px 0;
+    margin: 0 -6px;
+  }
+
+  .site-nav nav a,
+  .site-nav nav strong,
+  .theme-toggle {
+    padding: 4px 6px;
+  }
+
+  /* The toggle shrinks to a sun / moon icon */
+  .theme-toggle .theme-label {
+    display: none;
+  }
+
+  .theme-toggle svg {
+    display: inline-block;
   }
 }
 
